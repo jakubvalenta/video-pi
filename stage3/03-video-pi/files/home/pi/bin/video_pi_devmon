@@ -1,0 +1,10 @@
+#!/bin/sh
+mkdir -p $HOME/.log/
+cmd_start="$HOME/bin/video_pi_play"
+cmd_stop="killall mpv"
+devmon \
+    --exec-on-drive "$cmd_stop; xterm -fullscreen -e $cmd_start \"%d\"" \
+    --exec-on-unmount "$cmd_stop" \
+    --exec-on-remove "$cmd_stop" \
+    # --always-exec &> $HOME/.log/video_pi.log
+    &> $HOME/.log/video_pi.log

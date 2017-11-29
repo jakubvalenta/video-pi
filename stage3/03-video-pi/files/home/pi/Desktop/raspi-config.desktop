@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Configure
+Exec=xterm -fullscreen -e bash -c 'sudo raspi-config'
+Icon=/usr/share/raspberrypi-artwork/raspberry-pi-logo.svg
