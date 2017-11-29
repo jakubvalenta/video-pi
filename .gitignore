@@ -1,7 +1,6 @@
 deploy/*
 work/*
 postrun.sh
-SKIP
 .pc
 *-pc
 apt-cacher-ng/
