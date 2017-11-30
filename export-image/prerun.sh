@@ -44,7 +44,17 @@ BOOT_LENGTH=$(echo "$PARTED_OUT" | grep -e '^ 1'| xargs echo -n \
 ROOT_OFFSET=$(echo "$PARTED_OUT" | grep -e '^ 2'| xargs echo -n \
 | cut -d" " -f 2 | tr -d B)
 ROOT_LENGTH=$(echo "$PARTED_OUT" | grep -e '^ 2'| xargs echo -n \
-| cut -d" " -f 4 | tr -d B)
+                  | cut -d" " -f 4 | tr -d B)
+
+# Loopback crash workaround
+# https://github.com/RPi-Distro/pi-gen/issues/104
+losetup -D
+for i in $(seq 0 5); do
+    dd if=/dev/zero of=virtualfs$i bs=1024 count=30720
+    losetup /dev/loop$i virtualfs$i
+    losetup -d /dev/loop$i
+    rm virtualfs$i
+done
 
 BOOT_DEV=$(losetup --show -f -o ${BOOT_OFFSET} --sizelimit ${BOOT_LENGTH} ${IMG_FILE})
 ROOT_DEV=$(losetup --show -f -o ${ROOT_OFFSET} --sizelimit ${ROOT_LENGTH} ${IMG_FILE})
@@ -54,10 +64,10 @@ echo "/:     offset $ROOT_OFFSET, length $ROOT_LENGTH"
 ROOT_FEATURES="^huge_file"
 for FEATURE in metadata_csum 64bit; do
 	if grep -q "$FEATURE" /etc/mke2fs.conf; then
-	    ROOT_FEATURES="^$FEATURE,$ROOT_FEATURES"
+            ROOT_FEATURES="^$FEATURE,$ROOT_FEATURES"
 	fi
 done
-mkdosfs -n boot -F 32 -v $BOOT_DEV > /dev/null
+mkdosfs -n boot -F 32 -I -v $BOOT_DEV > /dev/null
 mkfs.ext4 -L rootfs -O $ROOT_FEATURES $ROOT_DEV > /dev/null
 
 mount -v $ROOT_DEV ${ROOTFS_DIR} -t ext4
