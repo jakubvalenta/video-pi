@@ -25,16 +25,22 @@ chown 1000:1000 ${ROOTFS_DIR}/home/pi/.config
 chown 1000:1000 ${ROOTFS_DIR}/home/pi/.config/mpv
 install -v -m 644 -o 1000 -g 1000 files/home/pi/.config/mpv/mpv.conf ${ROOTFS_DIR}/home/pi/.config/mpv/mpv.conf
 
-# LXDE desktop
+# LXDE config
 
-mkdir -p ${ROOTFS_DIR}/home/pi/.config/pcmanfm
+mkdir -p ${ROOTFS_DIR}/home/pi/.config/pcmanfm/LXDE
 chown 1000:1000 ${ROOTFS_DIR}/home/pi/.config/pcmanfm
+chown 1000:1000 ${ROOTFS_DIR}/home/pi/.config/pcmanfm/LXDE
 install -v -m 644 -o 1000 -g 1000 files/home/pi/.config/pcmanfm/LXDE/desktop-items-0.conf ${ROOTFS_DIR}/home/pi/.config/pcmanfm/LXDE/desktop-items-0.conf
 install -v -m 644 -o 1000 -g 1000 files/home/pi/.config/pcmanfm/LXDE/pcmanfm.conf ${ROOTFS_DIR}/home/pi/.config/pcmanfm/LXDE/pcmanfm.conf
+
+# Desktop icons
+
+mkdir -p ${ROOTFS_DIR}/home/pi/Desktop
+chown 1000:1000 ${ROOTFS_DIR}/home/pi/Desktop
 install -v -m 644 -o 1000 -g 1000 files/home/pi/Desktop/raspi-config.desktop ${ROOTFS_DIR}/home/pi/Desktop/raspi-config.desktop
 
 # Autologin to GUI
 
-ln -s ${ROOTFS_DIR}/lib/systemd/system/graphical.target ${ROOTFS_DIR}/etc/systemd/default.target
+ln -fs ${ROOTFS_DIR}/lib/systemd/system/graphical.target ${ROOTFS_DIR}/etc/systemd/default.target
 ln -fs ${ROOTFS_DIR}/etc/systemd/system/autologin@.service ${ROOTFS_DIR}/etc/systemd/system/getty.target.wants/getty@tty1.service
 sed ${ROOTFS_DIR}/etc/lightdm/lightdm.conf -i -e "s/^\(#\|\)autologin-user=.*/autologin-user=pi/"
