@@ -5,9 +5,11 @@ erase: checkargs  ## Overwrite the whole DEVICE with zeros.
 
 build:  ## Build the image
 	sudo systemctl start docker
+	./fix-loopback.sh
 	./build-docker.sh
 
 build-continue:  ## Continue building the image (if previous build failed)
+	./fix-loopback.sh
 	CONTINUE=1 $(MAKE) build
 
 install: checkargs  ## Install built image
