@@ -44,3 +44,14 @@ install -v -m 644 -o 1000 -g 1000 files/home/pi/Desktop/raspi-config.desktop ${R
 ln -fs ${ROOTFS_DIR}/lib/systemd/system/graphical.target ${ROOTFS_DIR}/etc/systemd/default.target
 ln -fs ${ROOTFS_DIR}/etc/systemd/system/autologin@.service ${ROOTFS_DIR}/etc/systemd/system/getty.target.wants/getty@tty1.service
 sed ${ROOTFS_DIR}/etc/lightdm/lightdm.conf -i -e "s/^\(#\|\)autologin-user=.*/autologin-user=pi/"
+
+
+# Custom packages
+
+install -v -m 644 -o 1000 -g 1000 files/opt/video_pi/pkg/udevil/udevil_0.4.4+-1_armhf.deb ${ROOTFS_DIR}/opt/video_pi/pkg/udevil/udevil_0.4.4+-1_armhf.deb
+install -v -m 644 -o 1000 -g 1000 files/opt/video_pi/pkg/mpv/mpv_0.27.0_armhf.deb ${ROOTFS_DIR}/opt/video_pi/pkg/mpv/mpv_0.27.0_armhf.deb
+
+on_chroot << EOF
+dpkg -i /opt/video_pi/pkg/udevil/udevil_0.4.4+-1_armhf.deb
+dpkg -i /opt/video_pi/pkg/mpv/mpv_0.27.0_armhf.deb
+EOF
