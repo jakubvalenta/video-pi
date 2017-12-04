@@ -52,6 +52,6 @@ install -v -m 644 -o 1000 -g 1000 files/opt/video_pi/pkg/udevil/udevil_0.4.4+-1_
 install -v -m 644 -o 1000 -g 1000 files/opt/video_pi/pkg/mpv/mpv_0.27.0_armhf.deb ${ROOTFS_DIR}/opt/video_pi/pkg/mpv/mpv_0.27.0_armhf.deb
 
 on_chroot << EOF
-dpkg -i /opt/video_pi/pkg/udevil/udevil_0.4.4+-1_armhf.deb
-dpkg -i /opt/video_pi/pkg/mpv/mpv_0.27.0_armhf.deb
+apt install -y /opt/video_pi/pkg/udevil/udevil_0.4.4+-1_armhf.deb
+apt install -y /opt/video_pi/pkg/mpv/mpv_0.27.0_armhf.deb
 EOF
