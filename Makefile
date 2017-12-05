@@ -13,7 +13,7 @@ build-continue:  ## Continue building the image (if previous build failed)
 	CONTINUE=1 $(MAKE) build
 
 install: checkargs  ## Install built image
-	unzip -p deploy/image_2017-11-27-VideoPi-standard.zip | sudo dd of=$(DEVICE) bs=4 status=progress conv=fsync
+	unzip -p deploy/image_2017-12-05-VideoPi-standard.zip | sudo dd of=$(DEVICE) bs=4 status=progress conv=fsync
 	sudo sync
 
 checkargs:
