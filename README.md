@@ -1,3 +1,40 @@
+# Video Pi
+
+_Video player for artists by artists_
+
+This document contains technical information about Video Pi. For general help
+and configuration instructions visit
+[videopi.saloun.cz](https://videopi.saloun.cz).
+
+## Build
+
+Video Pi is based on [pi-gen](https://github.com/RPi-Distro/pi-gen). To build
+a Video Pi image that can be written to an SD card, either follow pi-gen's
+instructions or use Video Pi's convenient Makefile and run:
+
+```
+make build
+```
+
+If the build fails, you can continue using:
+
+```
+make build-continue
+```
+
+Once the build is finished, Video Pi image will be available in `./deploy/`.
+
+## Install
+
+To install the image, either use `dd` or check that the path to the image in
+[Makefile](./Makefile) is correct and then run:
+
+```
+make install DEVICE=/dev/sdX
+```
+
+---
+
 # pi-gen
 
 _Tool used to create the raspberrypi.org Raspbian images_
@@ -61,7 +98,7 @@ The following environment variables are supported:
    be built and cached.  Note, `WORK_DIR` stores a complete copy of the target
    system for each build stage, amounting to tens of gigabytes in the case of
    Raspbian.
-   
+
    **CAUTION**: If your working directory is on an NTFS partition you probably won't be able to build. Make sure this is a proper Linux filesystem.
 
  * `DEPLOY_DIR`  (Default: `"$BASE_DIR/deploy"`)
