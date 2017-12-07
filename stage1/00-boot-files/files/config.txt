@@ -54,3 +54,9 @@
 
 # Enable audio (loads snd_bcm2835)
 dtparam=audio=on
+
+# Fix audio distortion
+# https://archlinuxarm.org/wiki/Raspberry_Pi
+audio_pwm_mode=2
+# http://elinux.org/RPiconfig#Audio
+disable_audio_dither=1
