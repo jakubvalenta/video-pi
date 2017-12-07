@@ -48,8 +48,8 @@ sed ${ROOTFS_DIR}/etc/lightdm/lightdm.conf -i -e "s/^\(#\|\)autologin-user=.*/au
 
 # Custom packages
 
-install -v -m 644 -o 1000 -g 1000 files/opt/video_pi/pkg/udevil/udevil_0.4.4+-1_armhf.deb ${ROOTFS_DIR}/opt/video_pi/pkg/udevil/udevil_0.4.4+-1_armhf.deb
-install -v -m 644 -o 1000 -g 1000 files/opt/video_pi/pkg/mpv/mpv_0.27.0_armhf.deb ${ROOTFS_DIR}/opt/video_pi/pkg/mpv/mpv_0.27.0_armhf.deb
+install -v -D -m 644 -o 1000 -g 1000 files/opt/video_pi/pkg/udevil/udevil_0.4.4+-1_armhf.deb ${ROOTFS_DIR}/opt/video_pi/pkg/udevil/udevil_0.4.4+-1_armhf.deb
+install -v -D -m 644 -o 1000 -g 1000 files/opt/video_pi/pkg/mpv/mpv_0.27.0_armhf.deb ${ROOTFS_DIR}/opt/video_pi/pkg/mpv/mpv_0.27.0_armhf.deb
 
 on_chroot << EOF
 apt install -y /opt/video_pi/pkg/udevil/udevil_0.4.4+-1_armhf.deb
