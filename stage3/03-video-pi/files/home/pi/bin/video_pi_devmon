@@ -6,4 +6,6 @@ devmon \
     --exec-on-drive "$cmd_stop; xterm -fullscreen -e $cmd_start \"%d\"" \
     --exec-on-unmount "$cmd_stop" \
     --exec-on-remove "$cmd_stop" \
-    --always-exec &> $HOME/.log/video_pi.log
+    --always-exec \
+    --mount-options ro,noexec,nosuid,nodev,noatime \
+    &> $HOME/.log/video_pi.log
