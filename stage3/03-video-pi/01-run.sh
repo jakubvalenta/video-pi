@@ -54,4 +54,5 @@ install -v -D -m 644 -o 1000 -g 1000 files/opt/video_pi/pkg/mpv/mpv_0.27.0_armhf
 on_chroot << EOF
 apt install -y /opt/video_pi/pkg/udevil/udevil_0.4.4+-1_armhf.deb
 apt install -y /opt/video_pi/pkg/mpv/mpv_0.27.0_armhf.deb
+raspi-update
 EOF
