@@ -15,4 +15,4 @@ find_sorted_excl_nonsense() {
     grep -v -E "\/\."
 }
 
-mpv --loop=inf --fs --playlist <(find_sorted_excl_nonsense "$1")
+mpv --loop-playlist=inf --fs --playlist <(find_sorted_excl_nonsense "$1")
