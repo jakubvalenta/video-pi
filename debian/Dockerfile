@@ -2,13 +2,16 @@
 FROM debian:buster
 
 RUN apt-get update && apt-get install --yes \
-        build-essential \
-        debhelper \
-        devscripts \
-        dpkg-sig \
-        python3
+    build-essential \
+    debhelper \
+    devscripts \
+    dpkg-sig \
+    sudo \
+    wget
 
 ADD ./debian/control /app/debian/control
 RUN mk-build-deps --install /app/debian/control --tool "apt-get --allow-downgrades --yes"
+
+RUN useradd -G sudo docker && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 WORKDIR /app

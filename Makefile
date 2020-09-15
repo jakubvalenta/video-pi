@@ -80,6 +80,24 @@ debian-install: ${dist_dir}/${_debian_pkg_filename}   ## Install the built Debia
 	sudo dpkg -i "${dist_dir}/${_debian_pkg_filename}"
 	sudo apt-get install -f --yes
 
+.PHONY: debian-build-omxiv
+debian-build-omxiv: | start-docker  ## Build omxiv
+	docker run --rm \
+		-u "${_uid}:${_gid}" \
+		-v "$$(pwd):/app" \
+		-w "/app" \
+		"$(_debian_container_name)" \
+		./build-omxiv
+
+.PHONY: debian-build-udevil
+debian-build-udevil: | start-docker  ## Build udevil
+	docker run --rm \
+		-u "${_uid}:${_gid}" \
+		-v "$$(pwd):/app" \
+		-w "/app" \
+		"$(_debian_container_name)" \
+		./build-udevil
+
 .PHONY: debian-docker-build
 debian-docker-build: | start-docker  ## Build the Docker container
 	docker build -f debian/Dockerfile -t "$(_debian_container_name)" .

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -euo pipefail
+
+if ! grep deb-src /etc/apt/sources.list; then
+    cat <<EOF | sudo tee -a /etc/apt/sources.list
+deb-src http://deb.debian.org/debian buster main
+deb-src http://security.debian.org/debian-security buster/updates main
+deb-src http://deb.debian.org/debian buster-updates main
+EOF
+else
+    sudo sed /etc/apt/sources.list -i -e "s/#deb-src/deb-src/"
+fi
+
+cd omxiv
+sudo apt-get install -y checkinstall libjpeg8-dev libpng12-dev
+make
+make ilclient
+checkinstall -D make install
+mv -t ../dist omxiv_*.deb
