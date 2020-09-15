@@ -1,3 +1,0 @@
-@lxpanel --profile LXDE
-@pcmanfm --desktop --profile LXDE
-@/home/pi/bin/video_pi_devmon

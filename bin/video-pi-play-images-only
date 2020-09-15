@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if fd --version &> /dev/null; then
+    fd_cmd=fd
+elif fdfind --version &> /dev/null; then
+    fd_cmd=fdfind
+else
+    echo "fd is not installed" >&2
+    exit 2
+fi
+
+set -euo pipefail
+
+if [[ $# -lt 1 || $# -gt 2 ]]; then
+    echo "Usage: ${0##} <path> [duration]" >&2
+    exit 1
+fi
+
+path=$1
+duration=${2:-5}
+
+$fd_cmd -t f --ignore-file /etc/video-pi.fdignore -e jpg -e jpeg -e png . "$path" | \
+    sort | tr '\n' '\0' | xargs -0 omxiv -t "$duration" -b
