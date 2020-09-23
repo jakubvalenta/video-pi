@@ -195,13 +195,13 @@ make sign key_id='<gpg key fingerprint>'
 
 ## Change log
 
-- latest [version 1.1.0](TODO)
+- [version 1.1.0](TODO)
 
     Dark wallpaper.
 
     Signature: `E758 2303 2628 5069 5EF0 B8A7 97C3 CB6A 11E7 4F7E`
 
-- latest [version 1.0.0](TODO)
+- [version 1.0.0](TODO)
 
     Initial release of the Debian package.
 
