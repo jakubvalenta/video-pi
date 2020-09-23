@@ -53,11 +53,11 @@ ifeq ($(key_id),)
 	@echo "You must define the variable 'key_id'"
 	exit 1
 endif
-	 # See https://nixaid.com/using-gpg-inside-a-debian-docker-container/
+	 # See https://nixaid.com/using-gpg-inside-a-docker-container/
 	docker run --rm -it \
 		-u "${_uid}:${_gid}" \
 		-v "$$(pwd):/app" \
-		-v "${HOME}/.gnupg/:/.gnupg/:ro" \
+		-v "${HOME}/.gnupg/:/home/docker/.gnupg/:ro" \
 		--tmpfs "/run/user/${_uid}/:mode=0700,uid=${_uid},gid=${_gid}" \
 		-w "/app/${dist_dir}" \
 		"$(_debian_container_name)" \
@@ -65,11 +65,11 @@ endif
 
 .PHONY: debian-verify
 debian-verify: ${dist_dir}/${_debian_pkg_filename} | start-docker  ## Verify the signature of the Debian package
-	 # See https://nixaid.com/using-gpg-inside-a-debian-docker-container/
+	 # See https://nixaid.com/using-gpg-inside-a-docker-container/
 	docker run --rm -it \
 		-u "${_uid}:${_gid}" \
 		-v "$$(pwd):/app:ro" \
-		-v "${HOME}/.gnupg/:/.gnupg/:ro" \
+		-v "${HOME}/.gnupg/:/home/docker/.gnupg/:ro" \
 		--tmpfs "/run/user/${_uid}/:mode=0700,uid=${_uid},gid=${_gid}" \
 		-w "/app/${dist_dir}" \
 		"$(_debian_container_name)" \

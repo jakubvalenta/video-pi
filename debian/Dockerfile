@@ -12,6 +12,6 @@ RUN apt-get update && apt-get install --yes \
 ADD ./debian/control /app/debian/control
 RUN mk-build-deps --install /app/debian/control --tool "apt-get --allow-downgrades --yes"
 
-RUN useradd -G sudo docker && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN useradd -m -G sudo docker && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 WORKDIR /app
