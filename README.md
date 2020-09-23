@@ -37,19 +37,19 @@ Not supported:
    Pi. Follow the [installation
    guide](https://www.raspberrypi.org/documentation/installation/installing-images/README.md).
 
-2. Download the video-pi package and its dependencies and transfer them to the
+2. Download the Video Pi package and its dependencies and transfer them to the
    Raspberry Pi:
 
+    - [video-pi](TODO).
     - [omxiv](TODO).
     - [udevil-0.4.4+](TODO).
-    - [video-pi](TODO).
 
 3. On the Raspberry Pi, install the packages:
 
     ``` shell
-    sudo dpkg -i omxiv_*.deb
-    sudo dpkg -i udevi_*.deb
-    sudo dpkg -i video-pi_*.deb
+    sudo apt install ./omxiv_*.deb
+    sudo apt install ./udevil_*.deb
+    sudo apt install ./video-pi_*.deb
     ```
 
 ## User guide
@@ -58,9 +58,9 @@ Not supported:
 
 1. Make sure the **HDMI or S-Video cable** is connected _before_ you power on
    the device.
-2. Plug in the power source
+2. Plug in the power source.
 
-When Video Pi finishes startup, it will show a desktop with white background and
+When Video Pi finishes startup, it will show a desktop with dark background and
 the red Video Pi logo.
 
 ### Changing video output resolution
@@ -72,17 +72,17 @@ the red Video Pi logo.
 
 ### Video playback
 
-To start playing videos, simply **connect a USB stick** with the video
-files. Video Pi will play all files in **alphabetical order**. When it finishes
-the last file, it will start again with the first file without any break.
+To start playing videos, **connect a USB stick** with the video files. Video Pi
+will play all files in **alphabetical order**. When it finishes the last file,
+it will start again with the first file without any break.
 
 When a USB stick is connected before the device starts, Video Pi will start
 **playing the videos immediatelly after starting up** (you don't need to
 disconnect the USB stick and connect it again).
 
-To enforce **particular video order**, name your files with numbers or lowercase
-letters. Non-latin characters (with diacritics, in cyrillic etc) as well as
-special characters (punctuation etc) are discouraged.
+To play the videos in **particular order**, name your files with numbers or
+lowercase letters. Non-latin characters (with diacritics, in cyrillic etc) as
+well as special characters (punctuation etc) are discouraged.
 
 Video Pi supports Full HD (1080p) **video resolution**.
 
@@ -128,9 +128,8 @@ Model B+ or Raspberry Pi 4 to lend out for testing.
 
 If you don't feel like installing Video Pi yourself, I can
 
-- **lend you a Video Pi** (or two, or a dozen) for a daily price for as long as
-  you need,
-- or I can **sell it to you**, so it will be yours and yours only forever.
+- **lend you a Video Pi** (or more) for a daily price
+- or I can **sell it to you**
 
 In either case, I will **help you with the initial setup**.
 
@@ -144,7 +143,7 @@ Video Pi uses:
 
 - [udevil](https://ignorantguru.github.io/udevil/) to trigger an action when USB
   stick is inserted
-- [VLC](https://www.videolan.org/} video play
+- [VLC](https://www.videolan.org/) video player
 - [omxiv](https://github.com/HaarigerHarald/omxiv) image viewer
 - [raspi-config](https://github.com/RPi-Distro/raspi-config) configuration tool
 
@@ -155,21 +154,21 @@ Video Pi uses:
 2. Build the Docker container in which the package will be built:
 
     ``` shell
-    make debian-container-build
+    make debian-docker-build
     ```
 
-2. Build Video Pi Debian package:
+2. Build the `video-pi` Debian package:
 
     ``` shell
     make debian-build
     ```
 
-3. Build omxiv Debian package:
+3. Build the `omxiv` Debian package:
 
     1. Clone this repository on the target Raspberry Pi.
     2. Run `./build-omxiv`.
 
-4. Build udevil Debian package:
+4. Build the `udevil` Debian package:
 
     1. Clone this repository on the target Raspberry Pi.
     2. Run `./build-udevil`.
