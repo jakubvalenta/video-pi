@@ -40,9 +40,9 @@ Not supported:
 2. Download the Video Pi package and its dependencies and transfer them to the
    Raspberry Pi:
 
-    - [video-pi](TODO).
-    - [omxiv](TODO).
-    - [udevil-0.4.4+](TODO).
+    - [video-pi](https://github.com/jakubvalenta/video-pi/releases/download/v1.1.0/video-pi_1.1.0-1_all.deb).
+    - [omxiv](https://github.com/jakubvalenta/video-pi/releases/download/v1.0.0/omxiv_20200913-1_armhf.deb).
+    - [udevil-0.4.4+](https://github.com/jakubvalenta/video-pi/releases/download/v1.0.0/udevil_0.4.4+-1_armhf.deb).
 
 3. On the Raspberry Pi, install the packages:
 
@@ -195,13 +195,13 @@ make sign key_id='<gpg key fingerprint>'
 
 ## Change log
 
-- [version 1.1.0](TODO)
+- [version 1.1.0](https://github.com/jakubvalenta/video-pi/releases/download/v1.1.0/video-pi_1.1.0-1_all.deb)
 
     Dark wallpaper.
 
     Signature: `E758 2303 2628 5069 5EF0 B8A7 97C3 CB6A 11E7 4F7E`
 
-- [version 1.0.0](TODO)
+- [version 1.0.0](https://github.com/jakubvalenta/video-pi/releases/download/v1.0.0/video-pi_1.0.0-1_all.deb)
 
     Initial release of the Debian package.
 
