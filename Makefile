@@ -1,5 +1,5 @@
 _name := video-pi
-_version := 1.0.0
+_version := 1.1.0
 _pkgrel := 1
 
 _debian_src_filename := ${_name}_${_version}.orig.tar.xz
@@ -21,7 +21,7 @@ install:  ## Install
 	install -D -m644 -t "$(DESTDIR)/etc" etc/*
 	install -D -m644 -o1000 -g1000 -t "$(DESTDIR)/home/pi/.config/pcmanfm/LXDE-pi" config/pcmanfm/*
 	install -D -m644 -t "$(DESTDIR)/usr/share/applications" data/*.desktop
-	install -D -m644 -t "$(DESTDIR)/usr/share/video-pi" data/*.png
+	install -D -m644 -t "$(DESTDIR)/usr/share/video-pi" data/*.svg
 	install -D -m644 -o1000 -g1000 -t "$(DESTDIR)/home/pi/.config/autostart" data/video-pi-devmon.desktop
 	install -D -m644 -o1000 -g1000 -t "$(DESTDIR)/home/pi/Desktop" data/raspi-config.desktop
 

@@ -1,5 +1,11 @@
+video-pi (1.1.0-1) unstable; urgency=medium
+
+  * Dark wallpaper.
+
+ -- Jakub Valenta <jakub@jakubvalenta.cz>  Wed, 23 Sep 2020 18:54:00 +0000
+
 video-pi (1.0.0-1) unstable; urgency=medium
 
-  * Initial release
+  * Initial release.
 
  -- Jakub Valenta <jakub@jakubvalenta.cz>  Sun, 13 Sep 2020 16:29:38 +0000
