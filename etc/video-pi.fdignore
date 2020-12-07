@@ -1,3 +1,4 @@
 $RECYCLE.BIN
+*.dat
 *.db
 *.ini

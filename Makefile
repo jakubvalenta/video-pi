@@ -1,5 +1,5 @@
 _name := video-pi
-_version := 1.1.0
+_version := 1.2.0
 _pkgrel := 1
 
 _debian_src_filename := ${_name}_${_version}.orig.tar.xz

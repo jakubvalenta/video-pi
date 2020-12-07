@@ -40,7 +40,7 @@ Not supported:
 2. Download the Video Pi package and its dependencies and transfer them to the
    Raspberry Pi:
 
-    [video-pi](https://github.com/jakubvalenta/video-pi/releases/download/v1.1.0/video-pi_1.1.0-1_all.deb)
+    [video-pi](https://github.com/jakubvalenta/video-pi/releases/download/v1.2.0/video-pi_1.2.0-1_all.deb)
 
     [omxiv](https://github.com/jakubvalenta/video-pi/releases/download/v1.0.0/omxiv_20200913-1_armhf.deb)
 
