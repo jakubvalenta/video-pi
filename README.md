@@ -40,7 +40,7 @@ Not supported:
 2. Download the Video Pi package and its dependencies and transfer them to the
    Raspberry Pi:
 
-    [video-pi](https://github.com/jakubvalenta/video-pi/releases/download/v1.2.0/video-pi_1.2.0-1_all.deb)
+    [video-pi](https://github.com/jakubvalenta/video-pi/releases/download/v1.2.0/video-pi_1.2.0-2_all.deb)
 
     [omxiv](https://github.com/jakubvalenta/video-pi/releases/download/v1.0.0/omxiv_20200913-1_armhf.deb)
 
@@ -197,7 +197,7 @@ make sign key_id='<gpg key fingerprint>'
 
 ## License
 
-Copyright 2015-2020 Jakub Valenta
+Copyright 2015-2021 Jakub Valenta
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

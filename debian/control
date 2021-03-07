@@ -5,8 +5,8 @@ Maintainer: Jakub Valenta <jakub@jakubvalenta.cz>
 Build-Depends: debhelper (>= 11)
 Standards-Version: 4.1.3
 Homepage: https://videopi.saloun.cz/
-Vcs-Browser: https://www.github.com/jakubvalenta/video-pi-pkg
-Vcs-Git: https://www.github.com/jakubvalenta/video-pi-pkg.git
+Vcs-Browser: https://www.github.com/jakubvalenta/video-pi
+Vcs-Git: https://www.github.com/jakubvalenta/video-pi.git
 
 Package: video-pi
 Architecture: all

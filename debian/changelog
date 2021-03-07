@@ -1,3 +1,9 @@
+video-pi (1.2.0-2) unstable; urgency=medium
+
+  * Fix package repository URL.
+
+ -- Jakub Valenta <jakub@jakubvalenta.cz>  Sun, 07 Mar 2021 11:57:13 +0000
+
 video-pi (1.2.0-1) unstable; urgency=medium
 
   * Ignore *.dat files.

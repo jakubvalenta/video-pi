@@ -1,10 +1,10 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: video-pi
 Upstream-Contact: Jakub Valenta <jakub@jakubvalenta.cz>
-Source: https://www.github.com/jakubvalenta/video-pi-pkg
+Source: https://www.github.com/jakubvalenta/video-pi
 
 Files: *
-Copyright: 2015-2020 Jakub Valenta <jakub@jakubvalenta.cz>
+Copyright: 2015-2021 Jakub Valenta <jakub@jakubvalenta.cz>
 License: GPL-3.0+
 
 License: GPL-3.0+
