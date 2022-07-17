@@ -12,23 +12,37 @@ else
     sudo sed /etc/apt/sources.list -i -e "s/#deb-src/deb-src/"
 fi
 
-version=0.4.4+
-
 dir=$(dirname "$(readlink -f "$0")")
 tmp_dir=$(mktemp -d --suffix "-udevil")
+
+# Create temporary directory.
 mkdir -p "$tmp_dir"
 pushd "$tmp_dir" > /dev/null
 
-set -x
+# Update packages.
 sudo apt-get update
 sudo apt-get build-dep -y udevil
+
+# Download udevil.
 wget -O udevil.tar.gz https://github.com/IgnorantGuru/udevil/tarball/next
 tar xzf udevil.tar.gz
-mv IgnorantGuru-udevil-* "udevil-$version"
-cd "udevil-$version"
+mv IgnorantGuru-udevil-* "udevil-0.4.4+"
+cd "udevil-0.4.4+"
 ln -s distros/debian debian
+
+# Patch udevil.
+cp -t . "$dir/udevil/fix_exfat_nonempty.patch"
+patch -p1 < fix_exfat_nonempty.patch
+export DEBFULLNAME="Jakub Valenta"
+export DEBEMAIL="jakub@jakubvalenta.cz"
+dch -v 0.4.5-1 "Fix exfat support (remove default option nonempty)."
+
+# Build udevil.
 dpkg-buildpackage -us -uc -nc
+
+# Move built udevil package to the directory where this script was called from.
 mv -t "$dir/dist" ../udevil_*.deb
 
+# Remove temporary directory.
 popd > /dev/null
 rm -r "$tmp_dir"
