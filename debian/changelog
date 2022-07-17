@@ -1,3 +1,10 @@
+video-pi (1.2.1-1) unstable; urgency=medium
+
+  * Require udevil with fixed exfat support.
+  * Ignore more Windows system files.
+
+ -- Jakub Valenta <jakub@jakubvalenta.cz>  Sun, 17 Jul 2022 20:09:01 +0000
+
 video-pi (1.2.0-2) unstable; urgency=medium
 
   * Fix package repository URL.

@@ -1,6 +1,6 @@
 _name := video-pi
-_version := 1.2.0
-_pkgrel := 2
+_version := 1.2.1
+_pkgrel := 1
 
 _debian_src_filename := ${_name}_${_version}.orig.tar.xz
 _debian_src_dirname := ${_name}-${_version}
@@ -43,7 +43,7 @@ ${dist_dir}/${_debian_src_dirname}: ${dist_dir}/${_debian_src_filename}
 
 ${dist_dir}/${_debian_src_filename}:
 	mkdir -p "${dist_dir}"
-		tar cJvf "${dist_dir}/${_debian_src_filename}" \
+	tar cJvf "${dist_dir}/${_debian_src_filename}" \
 		-X .tarignore \
 		--transform 's,^\.,${_debian_src_dirname},' .
 
