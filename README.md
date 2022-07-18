@@ -16,15 +16,15 @@ installations. It is a software package for the Raspberry Pi mini computer.
 
 ## Supported hardware
 
-Tested:
+Supported and tested:
 
+- Raspberry Pi 4
 - Raspberry Pi 3 Model B
 
 Supported but not tested:
 
-- Raspberry Pi 2 Model B
 - Raspberry Pi 3 Model B+
-- Raspberry Pi 4
+- Raspberry Pi 2 Model B
 
 Not supported:
 
