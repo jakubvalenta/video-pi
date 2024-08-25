@@ -197,7 +197,7 @@ make sign key_id='<gpg key fingerprint>'
 
 ## License
 
-Copyright 2015-2022 Jakub Valenta
+Copyright 2015-2024 Jakub Valenta
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
