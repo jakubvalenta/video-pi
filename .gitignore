@@ -1,2 +1,5 @@
+.cache
 README.html
+build
+compile_commands.json
 dist

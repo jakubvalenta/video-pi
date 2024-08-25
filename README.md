@@ -54,16 +54,6 @@ Not supported:
     sudo apt install ./video-pi_*.deb
     ```
 
-    Be aware that the `video-pi` package installs several files in the home
-    directory. If these files exist, they will be overwritten:
-
-    ``` shell
-    ~/.config/autostart/video-pi-devmon.desktop
-    ~/.config/pcmanfm/LXDE-pi/desktop-items-0.conf
-    ~/.config/pcmanfm/LXDE-pi/pcmanfm.conf
-    ~/Desktop/raspi-config.desktop
-    ```
-
 ## User guide
 
 ### Starting Video Pi

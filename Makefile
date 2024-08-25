@@ -13,17 +13,17 @@ dist_dir ?= dist
 
 .PHONY: build
 build:  ## Build
-	@echo "Done"
+	CMAKE_EXPORT_COMPILE_COMMANDS=1 cmake -B build
+	cp -a build/compile_commands.json compile_commands.json  # For clangd
+	make -C build
 
 .PHONY: install
 install:  ## Install
-	install -D -m644 -t "$(DESTDIR)/usr/bin" bin/*
+	install -D -m644 -t "$(DESTDIR)/usr/bin" "$(DESTDIR)/build/video-pi-setup" bin/*
 	install -D -m644 -t "$(DESTDIR)/etc" etc/*
-	install -D -m644 -o1000 -g1000 -t "$(DESTDIR)/home/pi/.config/pcmanfm/LXDE-pi" config/pcmanfm/*
 	install -D -m644 -t "$(DESTDIR)/usr/share/applications" data/*.desktop
 	install -D -m644 -t "$(DESTDIR)/usr/share/video-pi" data/*.svg
-	install -D -m644 -o1000 -g1000 -t "$(DESTDIR)/home/pi/.config/autostart" data/video-pi-devmon.desktop
-	install -D -m644 -o1000 -g1000 -t "$(DESTDIR)/home/pi/Desktop" data/raspi-config.desktop
+	install -D -m644 -o1000 -g1000 -t "$(DESTDIR)/etc/xdg/autostart" data/video-pi-devmon.desktop
 
 .PHONY: debian-build
 debian-build:  ## Build a Debian package
