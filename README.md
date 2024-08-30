@@ -54,6 +54,8 @@ Not supported:
     sudo apt install ./video-pi_*.deb
     ```
 
+4. Reboot the Raspberry Pi.
+
 ## User guide
 
 ### Starting Video Pi
