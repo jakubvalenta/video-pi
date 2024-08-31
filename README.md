@@ -115,8 +115,7 @@ whether the **sound will play from HDMI or from the 3.5mm jack**.
 
 ### Changing the time between images in a slideshow
 
-You can change the setting only by editing the files `/usr/bin/video-pi-play`
-and `/usr/bin/video-pi-play-images-only`.
+You can change the setting only by editing the files `/usr/bin/video-pi-play`.
 
 ## Support and getting involved
 
