@@ -14,7 +14,7 @@ dist_dir ?= dist
 .PHONY: build
 build:  ## Build
 	CMAKE_EXPORT_COMPILE_COMMANDS=1 cmake -B build
-	cp -a build/compile_commands.json compile_commands.json  # For clangd
+	-cp -a build/compile_commands.json compile_commands.json  # For clangd
 	make -C build
 
 .PHONY: install
@@ -31,7 +31,7 @@ debian-build:  ## Build a Debian package
 	$(MAKE) "${dist_dir}/${_debian_pkg_filename}"
 
 ${dist_dir}/${_debian_pkg_filename}: ${dist_dir}/${_debian_src_dirname} | start-docker
-	docker run --rm \
+	docker run --platform linux/arm/v7 --rm \
 		-u "${_uid}:${_gid}" \
 		-v "$$(pwd):/app" \
 		-w "/app/${dist_dir}/${_debian_src_dirname}" \
@@ -54,7 +54,7 @@ ifeq ($(key_id),)
 	exit 1
 endif
 	 # See https://nixaid.com/using-gpg-inside-a-docker-container/
-	docker run --rm -it \
+	docker run --platform linux/arm/v7 --rm -it \
 		-u "${_uid}:${_gid}" \
 		-v "$$(pwd):/app" \
 		-v "${HOME}/.gnupg/:/home/docker/.gnupg/:ro" \
@@ -66,7 +66,7 @@ endif
 .PHONY: debian-verify
 debian-verify: ${dist_dir}/${_debian_pkg_filename} | start-docker  ## Verify the signature of the Debian package
 	 # See https://nixaid.com/using-gpg-inside-a-docker-container/
-	docker run --rm -it \
+	docker run --platform linux/arm/v7 --rm -it \
 		-u "${_uid}:${_gid}" \
 		-v "$$(pwd):/app:ro" \
 		-v "${HOME}/.gnupg/:/home/docker/.gnupg/:ro" \
@@ -82,7 +82,7 @@ debian-install: ${dist_dir}/${_debian_pkg_filename}   ## Install the built Debia
 
 .PHONY: debian-build-udevil
 debian-build-udevil: | start-docker  ## Build udevil
-	docker run --rm \
+	docker run --platform linux/arm/v7 --rm \
 		-u "${_uid}:${_gid}" \
 		-v "$$(pwd):/app" \
 		-w "/app" \
@@ -91,11 +91,16 @@ debian-build-udevil: | start-docker  ## Build udevil
 
 .PHONY: debian-docker-build
 debian-docker-build: | start-docker  ## Build the Docker container
-	docker build -f debian/Dockerfile -t "$(_debian_container_name)" .
+	docker build --platform linux/arm/v7 -f debian/Dockerfile -t "$(_debian_container_name)" .
 
 .PHONY: debian-docker-shell
 debian-docker-shell: | start-docker  ## Run bash in the Docker container
-	docker run --rm -it -u "${_uid}:${_gid}" -v "$$(pwd):/app" "$(_debian_container_name)" bash
+	docker run --platform linux/arm/v7 --rm -it \
+		-u 0 \
+		-v "$$(pwd):/app" \
+		-w "/app" \
+		"$(_debian_container_name)" \
+		bash
 
 .PHONY: start-docker
 start-docker:

@@ -1,6 +1,14 @@
+.cache
+.clang-format
 .dockerignore
 .git
 .gitignore
+.gitmodules
 .tarignore
+README.html
+build
+build-udevil
+compile_commands.json
 debian/Dockerfile
 dist
+udevil

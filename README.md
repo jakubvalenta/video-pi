@@ -151,22 +151,20 @@ Video Pi uses:
 
 1. Install Docker and start it.
 
-2. Build the Docker container in which the package will be built:
+2. Install and set up QEMU to be able to build and run AMRv7 Docker images.
+
+3. Build the Docker container in which the package will be built:
 
     ``` shell
     make debian-docker-build
     ```
 
-2. Build the `video-pi` Debian package:
+4. Build the `video-pi` and `udevil` Debian packages:
 
     ``` shell
     make debian-build
+    make debian-build-udevil
     ```
-
-4. Build the `udevil` Debian package:
-
-    1. Clone this repository on the target Raspberry Pi.
-    2. Run `./build-udevil`.
 
 All packages will be created in the directory `dist/`.
 

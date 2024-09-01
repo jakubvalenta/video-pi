@@ -2,26 +2,12 @@
 
 set -euo pipefail
 
-if ! grep deb-src /etc/apt/sources.list; then
-    cat <<EOF | sudo tee -a /etc/apt/sources.list
-deb-src http://deb.debian.org/debian buster main
-deb-src http://security.debian.org/debian-security buster/updates main
-deb-src http://deb.debian.org/debian buster-updates main
-EOF
-else
-    sudo sed /etc/apt/sources.list -i -e "s/#deb-src/deb-src/"
-fi
-
 dir=$(dirname "$(readlink -f "$0")")
 tmp_dir=$(mktemp -d --suffix "-udevil")
 
 # Create temporary directory.
 mkdir -p "$tmp_dir"
 pushd "$tmp_dir" > /dev/null
-
-# Update packages.
-sudo apt-get update
-sudo apt-get build-dep -y udevil
 
 # Download udevil.
 wget -O udevil.tar.gz https://github.com/IgnorantGuru/udevil/tarball/next

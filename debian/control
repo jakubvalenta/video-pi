@@ -2,15 +2,15 @@ Source: video-pi
 Section: x11
 Priority: optional
 Maintainer: Jakub Valenta <jakub@jakubvalenta.cz>
-Build-Depends: debhelper (>= 11)
+Build-Depends: cmake, debhelper (>= 11)
 Standards-Version: 4.1.3
 Homepage: https://videopi.saloun.cz/
 Vcs-Browser: https://www.github.com/jakubvalenta/video-pi
 Vcs-Git: https://www.github.com/jakubvalenta/video-pi.git
 
 Package: video-pi
-Architecture: all
 Depends: fd-find, lxterminal, omxiv, udevil (>= 0.4.5), vlc, ${shlibs:Depends}, ${misc:Depends}
+Architecture: armhf
 Description: video player for artists by artists
  Plays all files on a USB stick in a loop using vlc or omxiv when the device is
  connected.
