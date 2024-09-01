@@ -23,6 +23,7 @@ Supported and tested:
 
 Supported but not tested:
 
+- Raspberry Pi 5
 - Raspberry Pi 3 Model B+
 - Raspberry Pi 2 Model B
 
@@ -32,27 +33,58 @@ Not supported:
 
 ## Installation
 
-1. Install [Raspberry Pi
-   OS](https://www.raspberrypi.org/downloads/raspberry-pi-os/) on your Raspberry
-   Pi. Follow the [installation
-   guide](https://www.raspberrypi.org/documentation/installation/installing-images/README.md).
+1. Install Raspberry Pi OS on your Raspberry Pi by following the [installation
+   guide](https://www.raspberrypi.com/documentation/computers/getting-started.html#install-an-operating-systemhttps://www.raspberrypi.org/documentation/installation/installing-images/README.md).
 
-2. Download the Video Pi package and its dependencies and transfer them to the
-   Raspberry Pi:
+       It is recommended to use the [2023-05-03 bullseye armhf
+       image](https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf.img.xz),
+       because certain newer versions don't play HD video smoothly.
 
-    [video-pi](https://github.com/jakubvalenta/video-pi/releases/download/v1.2.1/video-pi_1.2.1-1_all.deb)
+2. Download the Video Pi package and its dependency udevil:
 
+    [video-pi](https://github.com/jakubvalenta/video-pi/releases/download/v2.0.0/video-pi_2.0.0-1_all.deb)
 
     [udevil-0.4.5](https://github.com/jakubvalenta/video-pi/releases/download/v1.2.1/udevil_0.4.5-1_armhf.deb)
 
-3. On the Raspberry Pi, install the packages:
+3. Transfer the downloaded packages to your Raspberry Pi, for example on a USB stick.
+
+4. On the Raspberry Pi:
+
+    Install the packages as root:
 
     ``` shell
-    sudo apt install ./udevil_*.deb
-    sudo apt install ./video-pi_*.deb
+    sudo apt install ./udevil_*.deb ./video-pi_*.deb
     ```
 
+    Then run the Video Pi installation script as regular user:
+
+    ``` shell
+    video-pi-install
+    ```
+
+    The script will edit your desktop configuration to set the Video Pi
+    wallpaper and to disable PCManFM's USB stick automounting, which would
+    conflict with Video Pi's automounting system based on udevil.
+
 4. Reboot the Raspberry Pi.
+
+## Uninstallation
+
+On the Raspberry Pi:
+
+    Run the Video Pi uninstallation script:
+
+    ``` shell
+    video-pi-uninstall
+    ```
+
+    This will restore your LXDE configuration from a backup made when installing Video Pi.
+
+    Then uninstall the Video Pi package and its dependency udevil as root:
+
+    ``` shell
+    sudo apt --purge remove udevil video-pi
+    ```
 
 ## User guide
 
@@ -64,13 +96,6 @@ Not supported:
 
 When Video Pi finishes startup, it will show a desktop with dark background and
 the red Video Pi logo.
-
-### Changing video output resolution
-
-1. Connect a USB mouse and keyboard.
-3. Click the **configuration icon** in the top left corner of the desktop. Use
-   the keyboard to navigate the interface. Screen resolution settings are under
-   _Advanced_.
 
 ### Video playback
 
@@ -92,20 +117,32 @@ The **loop** (repeat all) function cannot be turned off.
 
 ### Image slideshow
 
-You can put image files on the USB stick too (even mix video and image
-files). Each image will be shown for **5 seconds**.
+You can put image files on the USB stick too. Each image will be shown for **5
+seconds**.
 
-### Audio output
+If you put only image files on the USB stick (no video files), an image viewer
+program will be used to show them. Then you can **configure the duration** of
+each slide by opening the main raspberry menu and going to Graphics > Image
+Viewer (the one with the purple icon) and then hamburger menu > Preferences >
+Slideshow.
 
-To adjust **audio volume**, disconnect the USB stick and then use the blue icon
-on the right side of the top system panel. Right-click the icon to change
-whether the **sound will play from HDMI or from the 3.5mm jack**.
+### Changing audio volume
+
+Disconnect your USB stick and then left-click the blue speaker icon on the right
+side of the top system panel.
+
+### Switching between HDMI and 3.5mm jack audio output
+
+Disconnect your USB stick and then right-click the blue speaker icon on the
+right side of the top system bar.
 
 ## FAQ
 
 ### Video playback is not smooth
 
-1. Make sure your power supply is strong enough.
+1. Make sure your power supply is strong enough and the USB cable is high
+   quality. If either are bad, you will see a gray lower power notification or a
+   yellow lightning icon in the upper right corner of the screen.
 2. Try different encoding options when rendering the video. Videos transcoded in
    VLC with the setting _Video for MPEG4 1080p TV/device_ are tested to play
    well.
@@ -140,8 +177,7 @@ Video Pi uses:
 
 - [udevil](https://ignorantguru.github.io/udevil/) to trigger an action when USB
   stick is inserted
-- [VLC](https://www.videolan.org/) video player
-- [raspi-config](https://github.com/RPi-Distro/raspi-config) configuration tool
+- [VLC](https://www.videolan.org/) media player
 - [Eye of Gnome](https://help.gnome.org/users/eog/stable/) image viewer
 
 ## Building from source
