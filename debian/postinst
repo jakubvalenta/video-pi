@@ -1,0 +1,2 @@
+#!/bin/bash
+echo "You should now run video-pi-install as regular user to configure your desktop."
