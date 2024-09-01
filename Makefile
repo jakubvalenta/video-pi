@@ -23,7 +23,7 @@ install:  ## Install
 	install -D -m644 -t "$(DESTDIR)/etc" etc/*
 	install -D -m644 -t "$(DESTDIR)/usr/share/applications" data/*.desktop
 	install -D -m644 -t "$(DESTDIR)/usr/share/video-pi" data/*.svg
-	install -D -m644 -o1000 -g1000 -t "$(DESTDIR)/etc/xdg/autostart" data/video-pi-devmon.desktop
+	install -D -m644 -t "$(DESTDIR)/etc/xdg/autostart" etc/xdg/autostart/video-pi-devmon.desktop
 
 .PHONY: debian-build
 debian-build:  ## Build a Debian package
