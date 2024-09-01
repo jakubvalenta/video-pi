@@ -1,3 +1,18 @@
+video-pi (2.0.0-1) unstable; urgency=medium
+
+  * Add install and uninstall scripts instead of writing to home dir.
+  * Use pqiv as image viewer instead of the deprecated omxiv.
+  * Restart the media player of image viewer if they crash.
+  * Make slideshow interval configurable using /etc/video-pi/video-pi.sh.
+  * Move fdignore file to /etc/video-pi/video-pi.fdignore.
+  * Show more image file formats using the image viewer instead of VLC.
+  * Don't show terminal window when playing videos.
+  * Set black desktop background and autohide the top bar.
+  * Hide VLC policy window and disable metadata network access.
+  * Remove the raspi-config desktop icon.
+
+ -- Jakub Valenta <jakub@jakubvalenta.cz>  Thu, 16 Sep 2024 18:07:28 +0000
+
 video-pi (1.2.1-1) unstable; urgency=medium
 
   * Require udevil with fixed exfat support.
