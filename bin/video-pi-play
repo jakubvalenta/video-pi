@@ -24,7 +24,7 @@ if [[ -z "$files" ]]; then
 fi
 
 n_files=$(echo "$files" | wc -l)
-n_images=$(echo "$files" | grep -c -iE '\.(jpe?g|png)$' || true)
+n_images=$(echo "$files" | grep -c -iE '\.(avif|bmp|gif|heic|jpe?g|png|svg|tif?f|webm|webp)$' || true)
 
 if [[ $n_files -eq $n_images ]]; then
     cmd=(eog -fs)
