@@ -9,8 +9,8 @@ Vcs-Browser: https://www.github.com/jakubvalenta/video-pi
 Vcs-Git: https://www.github.com/jakubvalenta/video-pi.git
 
 Package: video-pi
-Depends: fd-find, lxterminal, omxiv, udevil (>= 0.4.5), vlc, ${shlibs:Depends}, ${misc:Depends}
 Architecture: armhf
+Depends: eog, fd-find, udevil (>= 0.4.5), vlc, ${shlibs:Depends}, ${misc:Depends}
 Description: video player for artists by artists
- Plays all files on a USB stick in a loop using vlc or omxiv when the device is
+ Plays all files on a USB stick in a loop using vlc or eog when the device is
  connected.

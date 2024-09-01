@@ -111,10 +111,6 @@ whether the **sound will play from HDMI or from the 3.5mm jack**.
    well.
 3. Lastly, you can try overclocking your Raspberry Pi.
 
-### Changing the time between images in a slideshow
-
-You can change the setting only by editing the files `/usr/bin/video-pi-play`.
-
 ## Support and getting involved
 
 If you have an idea on how to improve Video Pi or if you need help using it,
@@ -146,6 +142,7 @@ Video Pi uses:
   stick is inserted
 - [VLC](https://www.videolan.org/) video player
 - [raspi-config](https://github.com/RPi-Distro/raspi-config) configuration tool
+- [Eye of Gnome](https://help.gnome.org/users/eog/stable/) image viewer
 
 ## Building from source
 

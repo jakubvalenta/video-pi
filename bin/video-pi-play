@@ -11,13 +11,12 @@ fi
 
 set -euo pipefail
 
-if [[ $# -lt 1 || $# -gt 2 ]]; then
-    echo "Usage: ${0##} <path> [duration]" >&2
+if [[ $# -ne 1 ]]; then
+    echo "Usage: ${0##} <path>" >&2
     exit 1
 fi
 
 path=$1
-duration=${2:-5}
 
 files=$($fd_cmd -t f --ignore-file /etc/video-pi.fdignore . "$path" | sort)
 if [[ -z "$files" ]]; then
@@ -28,6 +27,7 @@ n_files=$(echo "$files" | wc -l)
 n_images=$(echo "$files" | grep -c -iE '\.(jpe?g|png)$' || true)
 
 if [[ $n_files -eq $n_images ]]; then
+    cmd=(eog -fs)
 else
     cmd=(vlc -f -L --no-osd --video-on-top --image-duration "$duration")
 fi
