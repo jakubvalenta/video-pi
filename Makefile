@@ -19,11 +19,10 @@ build:  ## Build
 
 .PHONY: install
 install:  ## Install
-	install -D -m644 -t "$(DESTDIR)/usr/bin" "$(DESTDIR)/build/video-pi-setup" bin/*
-	install -D -m644 -t "$(DESTDIR)/etc" etc/*
-	install -D -m644 -t "$(DESTDIR)/usr/share/applications" data/*.desktop
-	install -D -m644 -t "$(DESTDIR)/usr/share/video-pi" data/*.svg
+	install -D -m644 -t "$(DESTDIR)/etc" etc/video-pi.fdignore
 	install -D -m644 -t "$(DESTDIR)/etc/xdg/autostart" etc/xdg/autostart/video-pi-devmon.desktop
+	install -D -m644 -t "$(DESTDIR)/usr/bin" bin/video-pi-devmon bin/video-pi-play bin/video-pi-stop build/video-pi-install build/video-pi-uninstall
+	install -D -m644 -t "$(DESTDIR)/usr/share/video-pi" data/video-pi-wallpaper.svg
 
 .PHONY: debian-build
 debian-build:  ## Build a Debian package
