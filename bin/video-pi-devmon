@@ -7,7 +7,7 @@ log_dir="$HOME/.local/share/video-pi"
 mkdir -p "$log_dir"
 video-pi-setup &> "$log_dir/video-pi.log"
 devmon \
-    --exec-on-drive "video-pi-stop; lxterminal --geometry=120x40 -e video-pi-play \"%d\"" \
+    --exec-on-drive "video-pi-stop; video-pi-play \"%d\"" \
     --exec-on-unmount video-pi-stop \
     --exec-on-remove video-pi-stop \
     --always-exec \
