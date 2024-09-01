@@ -28,7 +28,6 @@ n_files=$(echo "$files" | wc -l)
 n_images=$(echo "$files" | grep -c -iE '\.(jpe?g|png)$' || true)
 
 if [[ $n_files -eq $n_images ]]; then
-    cmd=(omxiv -t "$duration" -b)
 else
     cmd=(vlc -f -L --no-osd --video-on-top --image-duration "$duration")
 fi

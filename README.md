@@ -42,14 +42,12 @@ Not supported:
 
     [video-pi](https://github.com/jakubvalenta/video-pi/releases/download/v1.2.1/video-pi_1.2.1-1_all.deb)
 
-    [omxiv](https://github.com/jakubvalenta/video-pi/releases/download/v1.0.0/omxiv_20200913-1_armhf.deb)
 
     [udevil-0.4.5](https://github.com/jakubvalenta/video-pi/releases/download/v1.2.1/udevil_0.4.5-1_armhf.deb)
 
 3. On the Raspberry Pi, install the packages:
 
     ``` shell
-    sudo apt install ./omxiv_*.deb
     sudo apt install ./udevil_*.deb
     sudo apt install ./video-pi_*.deb
     ```
@@ -147,7 +145,6 @@ Video Pi uses:
 - [udevil](https://ignorantguru.github.io/udevil/) to trigger an action when USB
   stick is inserted
 - [VLC](https://www.videolan.org/) video player
-- [omxiv](https://github.com/HaarigerHarald/omxiv) image viewer
 - [raspi-config](https://github.com/RPi-Distro/raspi-config) configuration tool
 
 ## Building from source
@@ -165,11 +162,6 @@ Video Pi uses:
     ``` shell
     make debian-build
     ```
-
-3. Build the `omxiv` Debian package:
-
-    1. Clone this repository on the target Raspberry Pi.
-    2. Run `./build-omxiv`.
 
 4. Build the `udevil` Debian package:
 
