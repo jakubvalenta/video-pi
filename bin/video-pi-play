@@ -29,7 +29,7 @@ n_images=$(echo "$files" | grep -c -iE '\.(jpe?g|png)$' || true)
 if [[ $n_files -eq $n_images ]]; then
     cmd=(eog -fs)
 else
-    cmd=(vlc -f -L --no-osd --video-on-top --image-duration "$duration")
+    cmd=(cvlc -fL --no-metadata-network-access --no-osd --no-qt-privacy-ask --video-on-top)
 fi
 
 echo "$files" | tr '\n' '\0' | xargs -0 "${cmd[@]}"
