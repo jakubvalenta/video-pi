@@ -15,7 +15,12 @@ void copy_file(const char *path_in, const char *path_out) {
 
     fd_in = open(path_in, O_RDONLY);
     if (fd_in == -1) {
-        return;
+        // If the source file doesn't exist, create an empty one.
+        fd_in = open(path_in, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+        if (fd_in == -1) {
+            perror("open (path_in)");
+            exit(EXIT_FAILURE);
+        }
     }
 
     if (fstat(fd_in, &stat) == -1) {
@@ -85,7 +90,7 @@ int main() {
     const char *pcmanfm_conf_bak_path =
         g_strconcat(pcmanfm_conf_path, ".video-pi.bak", NULL);
 
-    printf("Creating a backup of %s\n", pcmanfm_conf_path);
+    printf("Creating backup of %s\n", pcmanfm_conf_path);
     copy_file(pcmanfm_conf_path, pcmanfm_conf_bak_path);
 
     const char *pcmanfm_conf_vals[][2] = {
@@ -99,7 +104,7 @@ int main() {
     const char *desktop_items_bak_path =
         g_strconcat(desktop_items_path, ".video-pi.bak", NULL);
 
-    printf("Creating a backup of %s\n", desktop_items_path);
+    printf("Creating backup of %s\n", desktop_items_path);
     copy_file(desktop_items_path, desktop_items_bak_path);
 
     const char *desktop_items_vals[][2] = {
@@ -112,4 +117,5 @@ int main() {
     update_key_file(desktop_items_path, "*", desktop_items_vals, 4);
 
     printf("Installation finished\n");
+    printf("You should now log in and log out again\n");
 }

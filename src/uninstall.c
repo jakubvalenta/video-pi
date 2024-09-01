@@ -25,7 +25,7 @@ int main() {
     const char *pcmanfm_conf_bak_path =
         g_strconcat(pcmanfm_conf_path, ".video-pi.bak", NULL);
 
-    printf("Restoring a backup of %s\n", pcmanfm_conf_path);
+    printf("Restoring backup of %s\n", pcmanfm_conf_path);
     rename(pcmanfm_conf_bak_path, pcmanfm_conf_path);
 
     const char *desktop_items_path =
@@ -33,8 +33,11 @@ int main() {
     const char *desktop_items_bak_path =
         g_strconcat(desktop_items_path, ".video-pi.bak", NULL);
 
-    printf("Restoring a backup of %s\n", desktop_items_path);
+    printf("Restoring backup of %s\n", desktop_items_path);
     rename(desktop_items_bak_path, desktop_items_path);
 
     printf("Uninstallation finished\n");
+    printf(
+        "You can now remove the video-pi package and its dependency using:\n");
+    printf("sudo apt --purge remove udevil video-pi\n");
 }
