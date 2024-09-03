@@ -118,7 +118,7 @@ int main() {
                                            {"show_trash", "0"}};
 
     printf("Changing settings in %s\n", desktop_items_path);
-    update_key_file(desktop_items_path, "*", desktop_items_vals, 4);
+    update_key_file(desktop_items_path, "*", desktop_items_vals, 7);
 
     const char *panels_dir_path = g_build_filename(
         config_dir_path, "lxpanel", g_strconcat("LXDE-", pw->pw_name, NULL),
