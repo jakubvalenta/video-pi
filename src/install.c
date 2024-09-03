@@ -36,15 +36,17 @@ void copy_file(const char *path_in, const char *path_out) {
         exit(EXIT_FAILURE);
     }
 
-    do {
+    while (len > 0) {
         ret = copy_file_range(fd_in, NULL, fd_out, NULL, len, 0);
         if (ret == -1) {
             perror("copy_file_range");
             exit(EXIT_FAILURE);
         }
-
+        if (ret <= 0) {
+            break;
+        }
         len -= ret;
-    } while (len > 0 && ret > 0);
+    }
 
     close(fd_in);
     close(fd_out);
@@ -80,13 +82,13 @@ int main() {
         g_getenv("XDG_CONFIG_PATH")
             ?: g_build_filename(pw->pw_dir, "/.config", NULL);
 
-    const char *lxde_dir_path =
+    const char *pcmanfm_dir_path =
         g_build_filename(config_dir_path, "pcmanfm",
                          g_strconcat("LXDE-", pw->pw_name, NULL), NULL);
-    g_mkdir_with_parents(lxde_dir_path, 0777);
+    g_mkdir_with_parents(pcmanfm_dir_path, 0777);
 
     const char *pcmanfm_conf_path =
-        g_build_filename(lxde_dir_path, "pcmanfm.conf", NULL);
+        g_build_filename(pcmanfm_dir_path, "pcmanfm.conf", NULL);
     const char *pcmanfm_conf_bak_path =
         g_strconcat(pcmanfm_conf_path, ".video-pi.bak", NULL);
 
@@ -100,21 +102,37 @@ int main() {
     update_key_file(pcmanfm_conf_path, "volume", pcmanfm_conf_vals, 3);
 
     const char *desktop_items_path =
-        g_build_filename(lxde_dir_path, "desktop-items-0.conf", NULL);
+        g_build_filename(pcmanfm_dir_path, "desktop-items-0.conf", NULL);
     const char *desktop_items_bak_path =
         g_strconcat(desktop_items_path, ".video-pi.bak", NULL);
 
     printf("Creating backup of %s\n", desktop_items_path);
     copy_file(desktop_items_path, desktop_items_bak_path);
 
-    const char *desktop_items_vals[][2] = {
-        {"desktop_fg", "#ffffffffffff"},
-        {"wallpaper", "/usr/share/video-pi/video-pi-wallpaper.svg"},
-        {"wallpaper_mode", "crop"},
-        {"show_trash", "0"}};
+    const char *desktop_items_vals[][2] = {{"desktop_bg", "#000000"},
+                                           {"desktop_fg", "#FFFFFF"},
+                                           {"desktop_shadow", "#000000"},
+                                           {"wallpaper_mode", "color"},
+                                           {"show_documents", "0"},
+                                           {"show_mounts", "0"},
+                                           {"show_trash", "0"}};
 
     printf("Changing settings in %s\n", desktop_items_path);
     update_key_file(desktop_items_path, "*", desktop_items_vals, 4);
+
+    const char *panels_dir_path = g_build_filename(
+        config_dir_path, "lxpanel", g_strconcat("LXDE-", pw->pw_name, NULL),
+        "panels", NULL);
+    g_mkdir_with_parents(panels_dir_path, 0777);
+
+    const char *panel_path = g_build_filename(panels_dir_path, "panel", NULL);
+    const char *panel_bak_path = g_strconcat(panel_path, ".video-pi.bak", NULL);
+
+    printf("Creating backup of %s\n", panel_path);
+    copy_file(panel_path, panel_bak_path);
+
+    printf("Changing settings in %s\n", panel_path);
+    copy_file("/usr/share/video-pi/panel", panel_path);
 
     printf("Installation finished\n");
     printf("You should now log in and log out again\n");

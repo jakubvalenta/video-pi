@@ -48,7 +48,7 @@ Not supported:
 
 3. Transfer the downloaded packages to your Raspberry Pi, for example on a USB stick.
 
-4. On the Raspberry Pi:
+4. On your Raspberry Pi:
 
     Install the packages as root:
 
@@ -66,11 +66,11 @@ Not supported:
     wallpaper and to disable PCManFM's USB stick automounting, which would
     conflict with Video Pi's automounting system based on udevil.
 
-4. Reboot the Raspberry Pi.
+4. Reboot your Raspberry Pi.
 
 ## Uninstallation
 
-On the Raspberry Pi:
+On your Raspberry Pi:
 
     Run the Video Pi uninstallation script:
 
