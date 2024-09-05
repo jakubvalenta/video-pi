@@ -1,18 +1,19 @@
 # Video Pi
 
-_Video player for artists by artists_
+Video player that plays files from a USB stick. Designed for art installations
+and similar presentations. No maintenance or remote control required.
 
-Video Pi is a simple video player specifically designed for art
-installations. It is a software package for the Raspberry Pi mini computer.
+Video Pi is a software package for the Raspberry Pi mini computer.
 
-[https://videopi.saloun.cz](https://videopi.saloun.cz)
+[https://videopi.ooooo.page](https://videopi.ooooo.page)
 
 ## Features
 
 - supports a __wide range of video formats__
 - plays all video files from a __USB stick__ in a __loop__
 - __turns on automatically__ when connected to power
-- __HDMI and S-Video__ output
+- __HDMI and S-Video__ video output
+- __HDMI or 3.5mm jack__ audio output
 
 ## Supported hardware
 
@@ -36,9 +37,9 @@ Not supported:
 1. Install Raspberry Pi OS on your Raspberry Pi by following the [installation
    guide](https://www.raspberrypi.com/documentation/computers/getting-started.html#install-an-operating-systemhttps://www.raspberrypi.org/documentation/installation/installing-images/README.md).
 
-       It is recommended to use the [2023-05-03 bullseye armhf
-       image](https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf.img.xz),
-       because certain newer versions don't play HD video smoothly.
+    It's recommended to use the [2023-05-03 bullseye armhf
+    image](https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf.img.xz),
+    because certain newer versions don't play HD video smoothly.
 
 2. Download the Video Pi package and its dependency udevil:
 
@@ -56,15 +57,19 @@ Not supported:
     sudo apt install ./udevil_*.deb ./video-pi_*.deb
     ```
 
-    Then run the Video Pi installation script as regular user:
+    Then run the Video Pi installation program as regular user:
 
     ``` shell
     video-pi-install
     ```
 
-    The script will edit your desktop configuration to set the Video Pi
-    wallpaper and to disable PCManFM's USB stick automounting, which would
-    conflict with Video Pi's automounting system based on udevil.
+    It will:
+
+    - Set a black wallpaper.
+    - Hide the top bar.
+    - Hide the trash and devices desktop icons.
+    - Disable the built-in USB stick automounting, which could conflict with
+      Video Pi's automounting system based on udevil.
 
 4. Reboot your Raspberry Pi.
 
@@ -72,13 +77,13 @@ Not supported:
 
 On your Raspberry Pi:
 
-    Run the Video Pi uninstallation script:
+    Run the Video Pi uninstallation program:
 
     ``` shell
     video-pi-uninstall
     ```
 
-    This will restore your LXDE configuration from a backup made when installing Video Pi.
+    It will restore your desktop configuration from a backup made when installing Video Pi.
 
     Then uninstall the Video Pi package and its dependency udevil as root:
 
@@ -90,18 +95,18 @@ On your Raspberry Pi:
 
 ### Starting Video Pi
 
-1. Make sure the **HDMI or S-Video cable** is connected _before_ you power on
-   the device.
+1. Make sure the HDMI or S-Video cable is connected _before_ you power on the
+   device.
 2. Plug in the power source.
 
-When Video Pi finishes startup, it will show a desktop with dark background and
-the red Video Pi logo.
+When the computer finishes startup, it will show a desktop with black
+wallpaper and no icons.
 
 ### Video playback
 
-To start playing videos, **connect a USB stick** with the video files. Video Pi
-will play all files in **alphabetical order**. When it finishes the last file,
-it will start again with the first file without any break.
+To start playing videos, **connect a USB stick** with your video files. Video Pi
+will play all the files in **alphabetical order**. When it finishes the last
+file, it will start again with the first file without a break.
 
 When a USB stick is connected before the device starts, Video Pi will start
 **playing the videos immediatelly after starting up** (you don't need to
@@ -122,67 +127,70 @@ seconds**.
 
 If you put only image files on the USB stick (no video files), an image viewer
 program will be used to show them. Then you can **configure the duration** of
-each slide by opening the main raspberry menu and going to Graphics > Image
-Viewer (the one with the purple icon) and then hamburger menu > Preferences >
-Slideshow.
+each slide by opening the main raspberry menu and going to _Graphics_ > _Image
+Viewer_ (the one with the purple icon) and then hamburger menu > _Preferences_ >
+_Slideshow_.
 
 ### Changing audio volume
 
-Disconnect your USB stick and then left-click the blue speaker icon on the right
-side of the top system panel.
+1. Disconnect your USB stick.
+2. Connect a mouse and move the cursor to the upper right corner of the screen.
+3. In the top panel that apppars, click the blue speaker icon with the **left
+   mouse button**.
 
 ### Switching between HDMI and 3.5mm jack audio output
 
-Disconnect your USB stick and then right-click the blue speaker icon on the
-right side of the top system bar.
+1. Disconnect your USB stick.
+2. Connect a mouse and move the cursor to the upper right corner of the screen.
+3. In the top panel that apppars, click the blue speaker icon with the **right
+   mouse button**.
 
 ## FAQ
 
 ### Video playback is not smooth
 
-1. Make sure your power supply is strong enough and the USB cable is high
-   quality. If either are bad, you will see a gray lower power notification or a
+1. Make sure your **power supply** is strong enough and the USB cable is high
+   quality. If either are bad, you will see a gray low power notification or a
    yellow lightning icon in the upper right corner of the screen.
-2. Try different encoding options when rendering the video. Videos transcoded in
-   VLC with the setting _Video for MPEG4 1080p TV/device_ are tested to play
-   well.
-3. Lastly, you can try overclocking your Raspberry Pi.
+2. Try different **encoding** options when rendering the video. Videos
+   transcoded in VLC with the setting _Video for MPEG4 1080p TV/device_ are
+   tested to play well.
+3. Use a more powerful **Raspberry Pi model**. Full HD videos with high
+   framerate might need Raspberry Pi 4 or newer.
+4. Lastly, you can try **overclocking** your Raspberry Pi.
 
 ## Support and getting involved
 
 If you have an idea on how to improve Video Pi or if you need help using it,
 send me an email to:
 
-videopi at saloun dot cz
-
-Also please let us know if you're in Berlin or Prague and have a Raspberry Pi 3
-Model B+ or Raspberry Pi 4 to lend out for testing.
+videopi at mailbox dot org
 
 ## Buy Video Pi
 
 If you don't feel like installing Video Pi yourself, I can
 
-- **lend you a Video Pi** (or more) for a daily price
-- or I can **sell it to you**
+- **lend you a Raspberry Pi with Video Pi installed** for a daily price,
+- or I can **sell it to you**.
 
 In either case, I will **help you with the initial setup**.
 
 Contact:
 
-videopi at saloun dot cz
+videopi at mailbox dot org
 
 ## Acknowledgements
 
 Video Pi uses:
 
-- [udevil](https://ignorantguru.github.io/udevil/) to trigger an action when USB
-  stick is inserted
-- [VLC](https://www.videolan.org/) media player
-- [Eye of Gnome](https://help.gnome.org/users/eog/stable/) image viewer
+- [udevil](https://ignorantguru.github.io/udevil/) to trigger an action when a
+  USB stick is connected,
+- [VLC](https://www.videolan.org/) media player,
+- [Eye of Gnome](https://help.gnome.org/users/eog/stable/) image viewer.
 
 ## Building from source
 
-1. Install Docker and start it.
+1. Install and start Docker.
 
 2. Install and set up QEMU to be able to build and run AMRv7 Docker images.
 
