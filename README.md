@@ -35,7 +35,7 @@ Not supported:
 ## Installation
 
 1. Install Raspberry Pi OS on your Raspberry Pi by following the [installation
-   guide](https://www.raspberrypi.com/documentation/computers/getting-started.html#install-an-operating-systemhttps://www.raspberrypi.org/documentation/installation/installing-images/README.md).
+   guide](https://www.raspberrypi.com/documentation/computers/getting-started.html#install-an-operating-system).
 
     It's recommended to use the [2023-05-03 bullseye armhf
     image](https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf.img.xz),
@@ -43,7 +43,7 @@ Not supported:
 
 2. Download the Video Pi package and its dependency udevil:
 
-    [video-pi](https://github.com/jakubvalenta/video-pi/releases/download/v2.0.0/video-pi_2.0.0-1_all.deb)
+    [video-pi](https://github.com/jakubvalenta/video-pi/releases/download/v2.0.0/video-pi_2.0.0-1_armhf.deb)
 
     [udevil-0.4.5](https://github.com/jakubvalenta/video-pi/releases/download/v1.2.1/udevil_0.4.5-1_armhf.deb)
 
