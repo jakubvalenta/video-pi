@@ -24,4 +24,6 @@ RUN sed /etc/apt/sources.list -i -e "s/#deb-src/deb-src/" && \
     raspberrypi-kernel-headers \
     wget
 
+RUN useradd -m docker
+
 WORKDIR /app

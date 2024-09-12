@@ -4,7 +4,7 @@ _pkgrel := 1
 
 _debian_src_filename := ${_name}_${_version}.orig.tar.xz
 _debian_src_dirname := ${_name}-${_version}
-_debian_pkg_filename := ${_name}_${_version}-${_pkgrel}_all.deb
+_debian_pkg_filename := ${_name}_${_version}-${_pkgrel}_armhf.deb
 _debian_container_name := video_pi_debian
 _uid=$(shell id -u)
 _gid=$(shell id -g)
