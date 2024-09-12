@@ -5,7 +5,7 @@ and similar presentations. No maintenance or remote control required.
 
 Video Pi is a software package for the Raspberry Pi mini computer.
 
-[https://videopi.ooooo.page](https://videopi.ooooo.page)
+[https://video-pi.ooooo.page](https://video-pi.ooooo.page)
 
 ## Features
 

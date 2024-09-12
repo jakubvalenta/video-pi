@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Jakub Valenta <jakub@jakubvalenta.cz>
 Build-Depends: cmake, debhelper (>= 11)
 Standards-Version: 4.1.3
-Homepage: https://videopi.ooooo.page/
+Homepage: https://video-pi.ooooo.page/
 Vcs-Browser: https://www.github.com/jakubvalenta/video-pi
 Vcs-Git: https://www.github.com/jakubvalenta/video-pi.git
 
