@@ -6,6 +6,7 @@ _debian_src_filename := ${_name}_${_version}.orig.tar.xz
 _debian_src_dirname := ${_name}-${_version}
 _debian_pkg_filename := ${_name}_${_version}-${_pkgrel}_armhf.deb
 _debian_container_name := video_pi_debian
+_udevil_pkg_filename := udevil_0.4.5-1_armhf.deb
 _uid=$(shell id -u)
 _gid=$(shell id -g)
 
@@ -25,7 +26,7 @@ install:  ## Install
 	install -D -m644 -t "$(DESTDIR)/usr/share/video-pi" usr/share/video-pi/panel
 
 .PHONY: debian-build
-debian-build:  ## Build a Debian package
+debian-build:  ## Build video-pi Debian package
 	-rm -rf "$(dist_dir)"
 	$(MAKE) "${dist_dir}/${_debian_pkg_filename}"
 
@@ -46,8 +47,20 @@ ${dist_dir}/${_debian_src_filename}:
 		-X .tarignore \
 		--transform 's,^\.,${_debian_src_dirname},' .
 
+.PHONY: debian-build-udevil
+debian-build-udevil:  ## Build udevil Debian package
+	$(MAKE) "${dist_dir}/${_udevil_pkg_filename}"
+
+${dist_dir}/${_udevil_pkg_filename}: | start-docker
+	docker run --platform linux/arm/v7 --rm \
+		-u "${_uid}:${_gid}" \
+		-v "$$(pwd):/app" \
+		-w "/app" \
+		"$(_debian_container_name)" \
+		./build-udevil
+
 .PHONY: debian-sign
-debian-sign: ${dist_dir}/${_debian_pkg_filename} | start-docker  ## Sign the Debian package
+debian-sign: ${dist_dir}/${_debian_pkg_filename} ${dist_dir}/${_udevil_pkg_filename} | start-docker  ## Sign the video-pi and udevil Debian packages
 ifeq ($(key_id),)
 	@echo "You must define the variable 'key_id'"
 	exit 1
@@ -60,10 +73,10 @@ endif
 		--tmpfs "/run/user/${_uid}/:mode=0700,uid=${_uid},gid=${_gid}" \
 		-w "/app/${dist_dir}" \
 		"$(_debian_container_name)" \
-		sh -c 'gpg-agent --daemon && dpkg-sig -k "${key_id}" --sign builder "${_debian_pkg_filename}"'
+		sh -c 'gpg-agent --daemon && dpkg-sig -k "${key_id}" --sign builder "${_debian_pkg_filename}" "${_udevil_pkg_filename}"'
 
 .PHONY: debian-verify
-debian-verify: ${dist_dir}/${_debian_pkg_filename} | start-docker  ## Verify the signature of the Debian package
+debian-verify: ${dist_dir}/${_debian_pkg_filename} ${dist_dir}/${_udevil_pkg_filename} | start-docker  ## Verify the signature of the video-pi and udevil Debian package
 	 # See https://nixaid.com/using-gpg-inside-a-docker-container/
 	docker run --platform linux/arm/v7 --rm -it \
 		-u "${_uid}:${_gid}" \
@@ -72,21 +85,7 @@ debian-verify: ${dist_dir}/${_debian_pkg_filename} | start-docker  ## Verify the
 		--tmpfs "/run/user/${_uid}/:mode=0700,uid=${_uid},gid=${_gid}" \
 		-w "/app/${dist_dir}" \
 		"$(_debian_container_name)" \
-		sh -c 'gpg-agent --daemon && dpkg-sig --verify "${_debian_pkg_filename}"'
-
-.PHONY: debian-install
-debian-install: ${dist_dir}/${_debian_pkg_filename}   ## Install the built Debian package
-	sudo dpkg -i "${dist_dir}/${_debian_pkg_filename}"
-	sudo apt-get install -f --yes
-
-.PHONY: debian-build-udevil
-debian-build-udevil: | start-docker  ## Build udevil
-	docker run --platform linux/arm/v7 --rm \
-		-u "${_uid}:${_gid}" \
-		-v "$$(pwd):/app" \
-		-w "/app" \
-		"$(_debian_container_name)" \
-		./build-udevil
+		sh -c 'gpg-agent --daemon && dpkg-sig --verify "${_debian_pkg_filename}" "${_udevil_pkg_filename}"'
 
 .PHONY: debian-docker-build
 debian-docker-build: | start-docker  ## Build the Docker container
