@@ -6,7 +6,7 @@ _debian_src_filename := ${_name}_${_version}.orig.tar.xz
 _debian_src_dirname := ${_name}-${_version}
 _debian_pkg_filename := ${_name}_${_version}-${_pkgrel}_armhf.deb
 _debian_container_name := video_pi_debian
-_udevil_pkg_filename := udevil_0.4.5-1_armhf.deb
+_udevil_pkg_filename := udevil_0.4.5-2_armhf.deb
 _uid=$(shell id -u)
 _gid=$(shell id -g)
 

@@ -21,7 +21,7 @@ cp -t . "$dir/udevil/fix_exfat_nonempty.patch"
 patch -p1 < fix_exfat_nonempty.patch
 export DEBFULLNAME="Jakub Valenta"
 export DEBEMAIL="jakub@jakubvalenta.cz"
-dch -v 0.4.5-1 "Fix exfat support (remove default option nonempty)."
+dch -v 0.4.5-2 "Fix exfat support (remove default option nonempty)."
 
 # Build udevil.
 dpkg-buildpackage -us -uc -nc

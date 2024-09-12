@@ -45,7 +45,7 @@ Not supported:
 
     [video-pi](https://github.com/jakubvalenta/video-pi/releases/download/v2.0.0/video-pi_2.0.0-1_armhf.deb)
 
-    [udevil-0.4.5](https://github.com/jakubvalenta/video-pi/releases/download/v1.2.1/udevil_0.4.5-1_armhf.deb)
+    [udevil-0.4.5](https://github.com/jakubvalenta/video-pi/releases/download/v2.0.0/udevil_0.4.5-2_armhf.deb)
 
 3. Transfer the downloaded packages to your Raspberry Pi, for example on a USB stick.
 
