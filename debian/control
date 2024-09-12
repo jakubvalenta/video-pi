@@ -4,13 +4,13 @@ Priority: optional
 Maintainer: Jakub Valenta <jakub@jakubvalenta.cz>
 Build-Depends: cmake, debhelper (>= 11)
 Standards-Version: 4.1.3
-Homepage: https://videopi.saloun.cz/
+Homepage: https://videopi.ooooo.page/
 Vcs-Browser: https://www.github.com/jakubvalenta/video-pi
 Vcs-Git: https://www.github.com/jakubvalenta/video-pi.git
 
 Package: video-pi
 Architecture: armhf
 Depends: eog, fd-find, udevil (>= 0.4.5), vlc, ${shlibs:Depends}, ${misc:Depends}
-Description: video player for artists by artists
- Plays all files on a USB stick in a loop using vlc or eog when the device is
- connected.
+Description: video player that plays files from a USB stick
+ Designed for art installations and similar presentations. No maintenance or
+ remote control required.
