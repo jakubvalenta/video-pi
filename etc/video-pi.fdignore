@@ -2,6 +2,7 @@ $RECYCLE.BIN/
 *.dat
 *.db
 *.ini
+*.xmp
 Thumbs.db
 Thumbs.db:encryptable
 [Dd]esktop.ini
