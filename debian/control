@@ -10,7 +10,7 @@ Vcs-Git: https://www.github.com/jakubvalenta/video-pi.git
 
 Package: video-pi
 Architecture: armhf
-Depends: eog, fd-find, udevil (>= 0.4.5), vlc, ${shlibs:Depends}, ${misc:Depends}
+Depends: eog, fd-find, heif-gdk-pixbuf, libavif-gdk-pixbuf, udevil (>= 0.4.5), vlc, ${shlibs:Depends}, ${misc:Depends}
 Description: video player that plays files from a USB stick
  Designed for art installations and similar presentations. No maintenance or
  remote control required.
