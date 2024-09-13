@@ -194,28 +194,19 @@ Video Pi uses:
 
 2. Install and set up QEMU to be able to build and run AMRv7 Docker images.
 
-3. Build the Docker container in which the package will be built:
+3. Build the Docker image:
 
     ``` shell
-    make debian-docker-build
+    make docker-image
     ```
 
-4. Build the `video-pi` and `udevil` Debian packages:
+4. Build the `video-pi` and `udevil` Debian packages in Docker.
+
+    Set the `key_id` variable to sign the packages.
 
     ``` shell
-    make debian-build
-    make debian-build-udevil
+    make docker-build-video-pi docker-build-udevil key_id='<gpg key fingerprint>'
     ```
-
-All packages will be created in the directory `dist/`.
-
-### Signing
-
-Additionally, you can sign the built package with GPG:
-
-``` shell
-make sign key_id='<gpg key fingerprint>'
-```
 
 ## License
 
