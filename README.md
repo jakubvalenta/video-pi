@@ -51,27 +51,33 @@ Not supported:
 
 4. On your Raspberry Pi:
 
-    Install the packages as root:
+    1. Install the packages:
 
-    ``` shell
-    sudo apt install ./udevil_*.deb ./video-pi_*.deb
-    ```
+        ``` shell
+        sudo apt install ./udevil_*.deb ./video-pi_*.deb
+        ```
 
-    Then run the Video Pi installation program as regular user:
+    2. Run the Video Pi installation program (as regular user):
 
-    ``` shell
-    video-pi-install
-    ```
+        ``` shell
+        video-pi-install
+        ```
 
-    It will:
+        It will:
 
-    - Set a black wallpaper.
-    - Hide the top bar.
-    - Hide the trash and devices desktop icons.
-    - Disable the built-in USB stick automounting, which could conflict with
-      Video Pi's automounting system based on udevil.
+        - Set a black wallpaper.
+        - Hide the top bar.
+        - Hide the trash and devices desktop icons.
+        - Disable the built-in USB stick automounting, which could conflict with
+          Video Pi's automounting system based on udevil.
 
-4. Reboot your Raspberry Pi.
+    3. Disable screen blanking:
+
+        ``` shell
+        sudo raspi-config nonint do_blanking 1
+        ```
+
+5. Reboot your Raspberry Pi.
 
 ## Uninstallation
 
