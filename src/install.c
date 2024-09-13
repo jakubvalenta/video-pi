@@ -135,5 +135,5 @@ int main() {
     copy_file("/usr/share/video-pi/panel", panel_path);
 
     printf("Installation finished\n");
-    printf("You should now log in and log out again\n");
+    printf("You should now log out and log in again\n");
 }

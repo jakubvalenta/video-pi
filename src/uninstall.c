@@ -48,7 +48,6 @@ int main() {
     rename(panel_bak_path, panel_path);
 
     printf("Uninstallation finished\n");
-    printf(
-        "You can now remove the video-pi package and its dependency using:\n");
+    printf("You can now remove the udevil and video-pi packages using:\n");
     printf("sudo apt --purge remove udevil video-pi\n");
 }
