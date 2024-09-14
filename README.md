@@ -129,13 +129,8 @@ The **loop** (repeat all) function cannot be turned off.
 ### Image slideshow
 
 You can put image files on the USB stick too. Each image will be shown for **5
-seconds**.
-
-If you put only image files on the USB stick (no video files), an image viewer
-program will be used to show them. Then you can **configure the duration** of
-each slide by opening the main raspberry menu and going to _Graphics_ > _Image
-Viewer_ (the one with the purple icon) and then hamburger menu > _Preferences_ >
-_Slideshow_.
+seconds** by default. You can change the slideshow interval by editing the
+`/etc/video-pi/video-pi.sh` file.
 
 ### Changing audio volume
 
@@ -155,9 +150,10 @@ _Slideshow_.
 
 ### Video playback is not smooth
 
-1. Make sure your **power supply** is strong enough and the USB cable is high
-   quality. If either are bad, you will see a gray low power notification or a
-   yellow lightning icon in the upper right corner of the screen.
+1. Make sure your **power supply** is strong enough. Turn of the wifi,
+   disconnect mouse and keybaord. If the power is low, you will see a gray
+   notification or a yellow lightning icon in the upper right corner of the
+   screen.
 2. Try different **encoding** options when rendering the video. Videos
    transcoded in VLC with the setting _Video for MPEG4 1080p TV/device_ are
    tested to play well.
@@ -192,7 +188,7 @@ Video Pi uses:
 - [udevil](https://ignorantguru.github.io/udevil/) to trigger an action when a
   USB stick is connected,
 - [VLC](https://www.videolan.org/) media player,
-- [Eye of Gnome](https://help.gnome.org/users/eog/stable/) image viewer.
+- [pqiv](http://www.pberndt.com/Programme/Linux/pqiv/index.html) image viewer.
 
 ## Building from source
 

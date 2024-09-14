@@ -1,4 +1,4 @@
 #!/bin/bash
 
-killall eog
+killall pqiv
 killall vlc

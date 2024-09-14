@@ -18,18 +18,21 @@ fi
 
 path=$1
 
-files=$($fd_cmd -t f --ignore-file /etc/video-pi.fdignore . "$path" | sort)
+. /etc/video-pi/video-pi.sh || true
+slideshow_interval=${SLIDESHOW_INTERVAL:-5}
+
+files=$($fd_cmd -t f --ignore-file /etc/video-pi/video-pi.fdignore . "$path" | sort)
 if [[ -z "$files" ]]; then
     exit 0
 fi
 
 n_files=$(echo "$files" | wc -l)
-n_images=$(echo "$files" | grep -c -iE '\.(avif|bmp|gif|heic|jpe?g|png|svg|tif?f|webm|webp)$' || true)
+n_images=$(echo "$files" | grep -c -iE '\.(avif|bmp|gif|heic|ico|jpe?g|png|psd|svg|tif?f|webp)$' || true)
 
 if [[ $n_files -eq $n_images ]]; then
-    cmd=(eog -fs)
+    cmd=(pqiv -fs -d "$slideshow_interval" --background-pattern=black --hide-info-box --low-memory --scale-images-up)
 else
-    cmd=(cvlc -fL --no-metadata-network-access --no-osd --no-qt-privacy-ask --video-on-top)
+    cmd=(cvlc -fL --image-duration "$slideshow_interval" --no-metadata-network-access --no-osd --no-qt-privacy-ask --video-on-top)
 fi
 
 echo "$files" | tr '\n' '\0' | xargs -0 "${cmd[@]}"
