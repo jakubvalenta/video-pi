@@ -6,9 +6,9 @@ log_dir="$HOME/.local/share/video-pi"
 
 mkdir -p "$log_dir"
 devmon \
-    --exec-on-drive "video-pi-stop; video-pi-play \"%d\"" \
-    --exec-on-unmount video-pi-stop \
-    --exec-on-remove video-pi-stop \
+    --exec-on-drive "killall video-pi-play; video-pi-play \"%d\"" \
+    --exec-on-unmount "killall video-pi-play" \
+    --exec-on-remove "killall video-pi-play" \
     --always-exec \
     --mount-options ro,noexec,nosuid,nodev,noatime \
     &> "$log_dir/video-pi.log"

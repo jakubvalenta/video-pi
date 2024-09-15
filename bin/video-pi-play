@@ -1,14 +1,5 @@
 #!/bin/bash
 
-if fd --version &> /dev/null; then
-    fd_cmd=fd
-elif fdfind --version &> /dev/null; then
-    fd_cmd=fdfind
-else
-    echo "fd is not installed" >&2
-    exit 2
-fi
-
 set -euo pipefail
 
 if [[ $# -ne 1 ]]; then
@@ -18,21 +9,53 @@ fi
 
 path=$1
 
-. /etc/video-pi/video-pi.sh || true
-slideshow_interval=${SLIDESHOW_INTERVAL:-5}
+if fd --version &> /dev/null; then
+    fd_cmd=fd
+elif fdfind --version &> /dev/null; then
+    fd_cmd=fdfind
+else
+    echo "fd is not installed. Exiting." >&2
+    exit 2
+fi
 
 files=$($fd_cmd -t f --ignore-file /etc/video-pi/video-pi.fdignore . "$path" | sort)
 if [[ -z "$files" ]]; then
+    echo "No video or image files found. Exiting." >&2
     exit 0
 fi
 
-n_files=$(echo "$files" | wc -l)
-n_images=$(echo "$files" | grep -c -iE '\.(avif|bmp|gif|heic|ico|jpe?g|png|psd|svg|tif?f|webp)$' || true)
+. /etc/video-pi/video-pi.sh || true
+slideshow_interval=${SLIDESHOW_INTERVAL:-5}
+echo "Using slideshow interval ${slideshow_interval}s." >&2
 
-if [[ $n_files -eq $n_images ]]; then
-    cmd=(pqiv -fs -d "$slideshow_interval" --background-pattern=black --hide-info-box --low-memory --scale-images-up)
-else
+n_files=$(echo "$files" | wc -l)
+n_images=$(echo "$files" | grep -c -i -E '\.(avif|bmp|gif|heic|ico|jpe?g|png|psd|svg|tif?f|webp)$' || true)
+echo "Found $n_files files out of which $n_images are image files." >&2
+
+IFS=$'\n' args=($files)
+
+if [[ $n_files -ne $n_images ]]; then
+    cmd_type="media player"
     cmd=(cvlc -fL --image-duration "$slideshow_interval" --no-metadata-network-access --no-osd --no-qt-privacy-ask --video-on-top)
+else
+    cmd_type="image viewer"
+    cmd=(pqiv -fs -d "$slideshow_interval" --background-pattern black --hide-info-box --low-memory --scale-images-up)
 fi
 
-echo "$files" | tr '\n' '\0' | xargs -0 "${cmd[@]}"
+trap 'kill $(jobs -p) &> /dev/null' EXIT
+
+echo "Starting $cmd_type." >&2
+while true; do
+    "${cmd[@]}" "${args[@]}" &
+    pid=$!
+    set +e
+    wait $pid &> /dev/null
+    code=$?
+    set -e
+    if [[ $code -eq 0 ]]; then
+        echo "$cmd_type ended gracefully. Shutting down." >&2
+        break
+    fi
+    echo "$cmd_type was terminated by SIG$(kill -l $code). Restarting it." >&2
+    sleep 1
+done

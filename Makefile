@@ -23,7 +23,7 @@ build:  ## Build
 install:  ## Install
 	install -D -m644 -t "$(DESTDIR)/etc/video-pi" etc/video-pi.fdignore etc/video-pi.sh
 	install -D -m644 -t "$(DESTDIR)/etc/xdg/autostart" etc/xdg/autostart/video-pi-devmon.desktop
-	install -D -m644 -t "$(DESTDIR)/usr/bin" bin/video-pi-devmon bin/video-pi-play bin/video-pi-stop build/video-pi-install build/video-pi-uninstall
+	install -D -m644 -t "$(DESTDIR)/usr/bin" bin/video-pi-devmon bin/video-pi-play build/video-pi-install build/video-pi-uninstall
 	install -D -m644 -t "$(DESTDIR)/usr/share/video-pi" usr/share/video-pi/panel
 
 .PHONY: docker-build-video-pi
