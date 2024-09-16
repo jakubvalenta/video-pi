@@ -41,6 +41,8 @@ Not supported:
     image](https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf.img.xz),
     because certain newer versions don't play HD video smoothly.
 
+    Feel free to update software after the installation.
+
 2. Download the Video Pi package and its dependency udevil:
 
     [video-pi](https://github.com/jakubvalenta/video-pi/releases/download/v2.0.0/video-pi_2.0.0-1_armhf.deb)
@@ -79,24 +81,6 @@ Not supported:
 
 5. Reboot your Raspberry Pi.
 
-## Uninstallation
-
-On your Raspberry Pi:
-
-    Run the Video Pi uninstallation program:
-
-    ``` shell
-    video-pi-uninstall
-    ```
-
-    It will restore your desktop configuration from a backup made when installing Video Pi.
-
-    Then uninstall the Video Pi package and its dependency udevil as root:
-
-    ``` shell
-    sudo apt --purge remove udevil video-pi
-    ```
-
 ## User guide
 
 ### Starting Video Pi
@@ -124,7 +108,7 @@ well as special characters (punctuation etc) are discouraged.
 
 Video Pi supports Full HD (1080p) **video resolution**.
 
-The **loop** (repeat all) function cannot be turned off.
+The **loop** (repeat all) function is always on.
 
 ### Image slideshow
 
@@ -132,34 +116,57 @@ You can put image files on the USB stick too. Each image will be shown for **5
 seconds** by default. You can change the slideshow interval by editing the
 `/etc/video-pi/video-pi.sh` file.
 
+If you put **only image files** (no video or other files) on your USB stick, an
+image viewer program will be used for the slideshow feature, instead of a media
+player program. The image viewer supports additional formats such as animated
+GIFs, AVIF and HEIC.
+
 ### Changing audio volume
 
 1. Disconnect your USB stick.
 2. Connect a mouse and move the cursor to the upper right corner of the screen.
-3. In the top panel that apppars, click the blue speaker icon with the **left
+3. In the top panel that appears, click the blue speaker icon with the **left
    mouse button**.
 
 ### Switching between HDMI and 3.5mm jack audio output
 
 1. Disconnect your USB stick.
 2. Connect a mouse and move the cursor to the upper right corner of the screen.
-3. In the top panel that apppars, click the blue speaker icon with the **right
+3. In the top panel that appears, click the blue speaker icon with the **right
    mouse button**.
 
 ## FAQ
 
 ### Video playback is not smooth
 
-1. Make sure your **power supply** is strong enough. Turn of the wifi,
-   disconnect mouse and keybaord. If the power is low, you will see a gray
-   notification or a yellow lightning icon in the upper right corner of the
+1. Make sure your **power supply** is strong enough. Turn off wifi, turn off
+   bluetooth, disconnect mouse and keyboard. If the power is low, you will see a
+   gray notification or a yellow lightning icon in the upper right corner of the
    screen.
-2. Try different **encoding** options when rendering the video. Videos
+2. Try different **encoding** options when rendering your videos. Videos
    transcoded in VLC with the setting _Video for MPEG4 1080p TV/device_ are
    tested to play well.
 3. Use a more powerful **Raspberry Pi model**. Full HD videos with high
    framerate might need Raspberry Pi 4 or newer.
 4. Lastly, you can try **overclocking** your Raspberry Pi.
+
+## Uninstallation
+
+On your Raspberry Pi:
+
+    Run the Video Pi uninstallation program:
+
+    ``` shell
+    video-pi-uninstall
+    ```
+
+    It will restore your desktop configuration from a backup made when installing Video Pi.
+
+    Then uninstall the Video Pi package and its dependency udevil as root:
+
+    ``` shell
+    sudo apt --purge remove udevil video-pi
+    ```
 
 ## Support and getting involved
 
@@ -194,7 +201,7 @@ Video Pi uses:
 
 1. Install and start Docker.
 
-2. Install and set up QEMU to be able to build and run AMRv7 Docker images.
+2. Install and set up QEMU to be able to build and run ARMv7 Docker images.
 
 3. Build the Docker image:
 
