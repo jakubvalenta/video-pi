@@ -154,7 +154,7 @@ GIFs, AVIF and HEIC.
 
 On your Raspberry Pi:
 
-    Run the Video Pi uninstallation program:
+1. Run the Video Pi uninstallation program:
 
     ``` shell
     video-pi-uninstall
@@ -162,7 +162,7 @@ On your Raspberry Pi:
 
     It will restore your desktop configuration from a backup made when installing Video Pi.
 
-    Then uninstall the Video Pi package and its dependency udevil as root:
+2. Uninstall the Video Pi package and its dependency udevil as root:
 
     ``` shell
     sudo apt --purge remove udevil video-pi
