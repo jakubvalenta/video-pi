@@ -1,3 +1,9 @@
+video-pi (2.0.1-1) unstable; urgency=medium
+
+  * Fix video freezing by explicitly setting video output module.
+
+ -- Jakub Valenta <jakub@jakubvalenta.cz>  Thu, 19 Sep 2024 20:30:48 +0000
+
 video-pi (2.0.0-1) unstable; urgency=medium
 
   * Add install and uninstall scripts instead of writing to home dir.
@@ -11,7 +17,7 @@ video-pi (2.0.0-1) unstable; urgency=medium
   * Hide VLC policy window and disable metadata network access.
   * Remove the raspi-config desktop icon.
 
- -- Jakub Valenta <jakub@jakubvalenta.cz>  Thu, 16 Sep 2024 18:07:28 +0000
+ -- Jakub Valenta <jakub@jakubvalenta.cz>  Mon, 16 Sep 2024 18:07:28 +0000
 
 video-pi (1.2.1-1) unstable; urgency=medium
 

@@ -1,5 +1,5 @@
 _name := video-pi
-_version := 2.0.0
+_version := 2.0.1
 _pkgrel := 1
 
 _video_pi_pkg_filename := $(_name)_$(_version)-$(_pkgrel)_armhf.deb
