@@ -36,7 +36,7 @@ IFS=$'\n' args=($files)
 
 if [[ $n_files -ne $n_images ]]; then
     cmd_type="media player"
-    cmd=(cvlc -fL --image-duration "$slideshow_interval" --no-metadata-network-access --no-osd --no-qt-privacy-ask --video-on-top)
+    cmd=(cvlc -fL --vout gles2 --gles2 egl_x11 --image-duration "$slideshow_interval" --no-metadata-network-access --no-osd --no-qt-privacy-ask --video-on-top)
 else
     cmd_type="image viewer"
     cmd=(pqiv -fs -d "$slideshow_interval" --background-pattern black --hide-info-box --low-memory --scale-images-up)
