@@ -1,4 +1,5 @@
 $RECYCLE.BIN/
+*.LRF
 *.dat
 *.db
 *.ini
