@@ -27,7 +27,7 @@ install:  ## Install
 	install -D -m644 -t "$(DESTDIR)/usr/share/video-pi" usr/share/video-pi/panel
 
 .PHONY: docker-build-video-pi
-docker-build-video-pi: | $(dist_dir) docker-start check-key-id  ## Build the video-pi package in Docker
+docker-build-video-pi: | $(dist_dir) check-key-id  ## Build the video-pi package in Docker
 	rm -f "$(dist_dir)/$(_video_pi_pkg_src_filename)" && \
 		tar -cJvf "$(dist_dir)/$(_video_pi_pkg_src_filename)" \
 			-X .tarignore \
@@ -44,7 +44,7 @@ docker-build-video-pi: | $(dist_dir) docker-start check-key-id  ## Build the vid
 		dpkg-sig --verify \"$(_video_pi_pkg_filename)\"'"
 
 .PHONY: docker-build-udevil
-docker-build-udevil: | $(dist_dir) docker-start check-key-id  ## Build the udevil package in Docker
+docker-build-udevil: | $(dist_dir) check-key-id  ## Build the udevil package in Docker
 	wget -O "$(dist_dir)/udevil.tar.gz" "https://github.com/IgnorantGuru/udevil/tarball/next"
 	cd "$(dist_dir)" && \
 		rm -rf "IgnorantGuru-udevil-*" && \
@@ -69,16 +69,14 @@ docker-build-udevil: | $(dist_dir) docker-start check-key-id  ## Build the udevi
 $(dist_dir):
 	mkdir -p "$@"
 
-.PHONY: docker-image
-docker-image: | docker-start  ## Build the Docker image
-	docker build --platform linux/arm/v7 -f debian/Dockerfile -t "$(_container_name)" .
-
 .PHONY: docker-shell
-docker-shell: | docker-start  ## Run bash in Docker
+docker-shell: | docker-build  ## Run bash in Docker
 	$(MAKE) docker-run cmd="bash"
 
 .PHONY: docker-run
-docker-run:
+docker-run: | docker-build
+	[ -n "$$(docker image ls -q "local:$(_container_name)")" ] || \
+		docker build --platform linux/arm/v7 -f debian/Dockerfile -t "$(_container_name)" .
 	 # See https://nixaid.com/using-gpg-inside-a-docker-container/
 	docker run --platform linux/arm/v7 --rm -it \
 		-u "$(_uid):$(_gid)" \
@@ -86,6 +84,11 @@ docker-run:
 		-v "$(HOME)/.gnupg/:/home/docker/.gnupg/:ro" \
 		--tmpfs "/run/user/${_uid}/:mode=0700,uid=${_uid},gid=${_gid}" \
 		"$(_container_name)" $(cmd)
+
+.PHONY: docker-build
+docker-build: | docker-start
+	docker image ls "local:$(_container_name)" &> /dev/null || \
+		docker build --platform linux/arm/v7 -f debian/Dockerfile -t "$(_container_name)" .
 
 .PHONY: docker-start
 docker-start:
