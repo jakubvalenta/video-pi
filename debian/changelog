@@ -1,3 +1,10 @@
+video-pi (2.1.0-1) unstable; urgency=medium
+
+  * Support ignore configuration file in home directory.
+  * Ignore LRF files, which are low-res DJI drone video files.
+
+ -- Jakub Valenta <jakub@jakubvalenta.cz>  Sat, 03 May 2025 09:40:29 +0000
+
 video-pi (2.0.1-1) unstable; urgency=medium
 
   * Fix video freezing by explicitly setting video output module.

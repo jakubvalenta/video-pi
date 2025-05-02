@@ -47,7 +47,7 @@ Not supported:
 
 2. Download the Video Pi package and its dependency udevil:
 
-    [video-pi](https://github.com/jakubvalenta/video-pi/releases/download/v2.0.1/video-pi_2.0.1-1_armhf.deb)
+    [video-pi](https://github.com/jakubvalenta/video-pi/releases/download/v2.1.0/video-pi_2.1.0-1_armhf.deb)
 
     [udevil-0.4.5](https://github.com/jakubvalenta/video-pi/releases/download/v2.0.0/udevil_0.4.5-2_armhf.deb)
 
