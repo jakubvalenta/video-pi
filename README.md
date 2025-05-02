@@ -7,6 +7,8 @@ Video Pi is a software package for the Raspberry Pi mini computer.
 
 [https://video-pi.ooooo.page](https://video-pi.ooooo.page)
 
+![Video Pi logo](./docs/video-pi-logo.svg)
+
 ## Features
 
 - supports a __wide range of video formats__
