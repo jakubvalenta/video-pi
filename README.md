@@ -135,6 +135,40 @@ GIFs, AVIF and HEIC.
 3. In the top panel that appears, click the blue speaker icon with the **right
    mouse button**.
 
+### Excluding files
+
+Sometimes you might have files on your USB stick that you don't want Video Pi to
+play. For example you might want to ignore all videos in a backup folder, or all
+low-resolution copies of your videos.
+
+To make Video Pi ignore specific files:
+
+1. Copy the default configuration file with ignore rules to your home directory:
+
+    ``` shell
+    mkdir -p ~/.config/video-pi
+    cp -t ~/.config/video-pi /etc/video-pi/video-pi.fdignore
+    ```
+
+2. Add your own ignore rules to the configuration file.
+
+    For example to ignore all files in a `backup` directory, add to
+    `~/config/video-pi/video-pi.fdignore`:
+
+    ```
+    backup/
+    ```
+
+    Or to ignore all files like `My Video low res.mp4`, add:
+
+    ```
+    *low res.mp4
+    ```
+
+    Notice that ignore rules are case-sensitive. Each rule is a glob pattern.
+    The syntax is described in [Rust
+    documentation](https://docs.rs/globset/latest/globset/#syntax).
+
 ## FAQ
 
 ### Video playback is not smooth

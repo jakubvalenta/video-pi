@@ -18,12 +18,20 @@ else
     exit 2
 fi
 
-files=$($fd_cmd -t f --ignore-file /etc/video-pi/video-pi.fdignore . "$path" | sort)
+home_config_dir=${XDG_HOME_CONFIG:-$HOME/.config}
+if [[ -f "$home_config_dir/video-pi/video-pi.fdignore" ]]; then
+    ignore_file="$home_config_dir/video-pi/video-pi.fdignore"
+else
+    ignore_file="/etc/video-pi/video-pi.fdignore"
+fi
+echo "Using ignore file $ignore_file" >&2
+files=$($fd_cmd -t f --ignore-file "$ignore_file" . "$path" | sort)
 if [[ -z "$files" ]]; then
     echo "No video or image files found. Exiting." >&2
     exit 0
 fi
 
+# shellcheck source=SCRIPTDIR/../etc/video-pi.sh
 . /etc/video-pi/video-pi.sh || true
 slideshow_interval=${SLIDESHOW_INTERVAL:-5}
 echo "Using slideshow interval ${slideshow_interval}s." >&2
