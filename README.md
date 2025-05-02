@@ -233,9 +233,14 @@ Video Pi uses:
 
 ## Building from source
 
-1. Install and start Docker.
+1. If you're not on the ARMv7 architecture, install and set up QEMU. For example
+   on Arch Linux:
 
-2. Install and set up QEMU to be able to build and run ARMv7 Docker images.
+   ``` shell
+   sudo pacman -S qemu-user-static
+   ```
+
+2. Install and start Docker.
 
 3. Build the Docker image:
 
