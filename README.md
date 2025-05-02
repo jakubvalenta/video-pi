@@ -253,7 +253,7 @@ Video Pi uses:
 
 ## License
 
-Copyright 2015-2024 Jakub Valenta
+Copyright 2015-2025 Jakub Valenta
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
